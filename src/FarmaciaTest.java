@@ -20,5 +20,11 @@ public class FarmaciaTest {
 	public void isEmpty(){
 		assertEquals(0, this.farmacia.getQtdeProdutosCadastrados());
 	}
+	
+	@Test
+	public void cadastraUmProduto(){
+		farmacia.cadastraProduto(999);
+		assertEquals(1,farmacia.getQtdeProdutosCadastrados());
+	}
 
 }

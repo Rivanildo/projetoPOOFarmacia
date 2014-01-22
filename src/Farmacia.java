@@ -12,6 +12,12 @@ public class Farmacia {
 	}
 
 	public Object getQtdeProdutosCadastrados() {
-		return 0;
+		return this.produtos.size();
+	}
+
+	public void cadastraProduto(long i) {
+		Produto a = new Produto(i);
+		this.produtos.add(a);
+		
 	}
 }

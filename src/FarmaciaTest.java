@@ -9,12 +9,16 @@ public class FarmaciaTest {
 	
 	@Before
 	public void iniciar(){
-		farmacia = new Farmacia();
+		this.farmacia = new Farmacia();
 	}
 	
 	@Test
+	public void verificaSeAFarmaciaEstaVazia(){
+		assertNotNull(this.farmacia);
+	}
+	@Test
 	public void isEmpty(){
-		assertEquals(0, farmacia.getQtdeProdutosCadastrados());
+		assertEquals(0, this.farmacia.getQtdeProdutosCadastrados());
 	}
 
 }

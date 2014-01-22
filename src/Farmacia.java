@@ -15,9 +15,9 @@ public class Farmacia {
 		return this.produtos.size();
 	}
 
-	public void cadastraProduto(long i) {
-		Produto a = new Produto(i);
-		this.produtos.add(a);
+	public void cadastraProduto(long numProduto) {
+		Produto produto = new Produto(numProduto);
+		this.produtos.add(produto);
 		
 	}
 }

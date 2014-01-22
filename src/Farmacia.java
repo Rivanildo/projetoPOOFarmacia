@@ -10,4 +10,8 @@ public class Farmacia {
 	public Farmacia(){
 		produtos = new LinkedList<Produto>();
 	}
+
+	public Object getQtdeProdutosCadastrados() {
+		return 0;
+	}
 }

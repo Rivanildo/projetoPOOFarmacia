@@ -11,9 +11,10 @@ public class FarmaciaTest {
 	public void iniciar(){
 		farmacia = new Farmacia();
 	}
+	
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void isEmpty(){
+		assertEquals(0, farmacia.getQtdeProdutosCadastrados());
 	}
 
 }

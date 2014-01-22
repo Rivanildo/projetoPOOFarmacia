@@ -6,4 +6,6 @@ public class Produto {
 	public Produto(long n){
 		this.numPedido=n;
 	}
+	
+	
 }

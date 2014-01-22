@@ -26,5 +26,11 @@ public class FarmaciaTest {
 		farmacia.cadastraProduto(999);
 		assertEquals(1,farmacia.getQtdeProdutosCadastrados());
 	}
+	@Test
+	public void cadastraDoisProdutos(){
+		farmacia.cadastraProduto(123);
+		farmacia.cadastraProduto(321);
+		assertEquals(2,farmacia.getQtdeProdutosCadastrados());
+	}
 
 }

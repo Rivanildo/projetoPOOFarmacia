@@ -20,4 +20,15 @@ public class Farmacia {
 		this.produtos.add(produto);
 		
 	}
+
+	public boolean isCadastrado(int numProduto) {
+		
+		for(Produto p : this.produtos){
+			if(p.getNumProduto() == numProduto ){
+				return true;
+			}
+		}
+		return false;
+		
+	}
 }

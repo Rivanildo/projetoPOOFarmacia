@@ -32,5 +32,10 @@ public class FarmaciaTest {
 		farmacia.cadastraProduto(321);
 		assertEquals(2,farmacia.getQtdeProdutosCadastrados());
 	}
+	@Test
+	public void verificaSeUmProdutoFoiCadastrato(){
+		farmacia.cadastraProduto(1234);
+		assertTrue(farmacia.isCadastrado(1234));
+	}
 
 }

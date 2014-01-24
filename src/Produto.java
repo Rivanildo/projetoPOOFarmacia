@@ -1,11 +1,13 @@
 
 public class Produto {
 
-	private long numPedido;
+	private long numProduto;
 	
-	public Produto(long n){
-		this.numPedido=n;
+	public Produto(long numProduto){
+		this.numProduto = numProduto;
 	}
-	
-	
+
+	public long getNumProduto() {
+		return numProduto;
+	}
 }

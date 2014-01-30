@@ -18,8 +18,8 @@ public class Farmacia {
 
 	public void cadastraProduto(long numProduto) throws ProdutoJaExistenteException {
 		for (Produto p: this.produtos) {
-			if (p.getNumProduto() == numProduto) {
-				throw new ProdutoJaExistenteException("Produto j√° existente!");
+			if (p.getCodProduto() == numProduto) {
+				throw new ProdutoJaExistenteException("Produto j· existente!");
 			}
 		}
 		Produto produto = new Produto(numProduto);
@@ -32,7 +32,7 @@ public class Farmacia {
 	public boolean isCadastrado(int numProduto) {
 		
 		for(Produto p : this.produtos){
-			if(p.getNumProduto() == numProduto ){
+			if(p.getCodProduto() == numProduto ){
 				return true;
 			}
 		}
@@ -43,7 +43,7 @@ public class Farmacia {
 	public void removerProduto(int numProduto) {
 		boolean removeu = false;
 		for(Produto p : this.produtos){
-			if(p.getNumProduto() == numProduto){
+			if(p.getCodProduto() == numProduto){
 				produtos.remove(p);
 				removeu = true;
 			}

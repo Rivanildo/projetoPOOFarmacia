@@ -1,3 +1,5 @@
+package br.com.ufpb.ProjetoPOO.Farmacia;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class Farmacia {
 			throw new PrecoInvalidoException("Cadastre um preço maior que R$ 0,00");
 		}else{
 			Produto produto = new Produto(codProduto, preco);
-                	this.produtos.add(produto);
+			this.produtos.add(produto);
 		}
 	}
 

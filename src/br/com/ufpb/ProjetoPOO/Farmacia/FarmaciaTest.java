@@ -1,7 +1,9 @@
+package br.com.ufpb.ProjetoPOO.Farmacia;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
 
 
 public class FarmaciaTest {
@@ -62,6 +64,7 @@ public class FarmaciaTest {
 	@Test
 	public void cadastraProdutoComPrecoValido() {
 		farmacia.cadastraProduto(332,2.00);
+		assertTrue(farmacia.isCadastrado(332));
 		
 	}
 	

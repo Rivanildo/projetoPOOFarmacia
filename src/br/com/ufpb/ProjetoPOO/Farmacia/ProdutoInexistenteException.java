@@ -1,3 +1,4 @@
+package br.com.ufpb.ProjetoPOO.Farmacia;
 
 public class ProdutoInexistenteException extends RuntimeException {
 	

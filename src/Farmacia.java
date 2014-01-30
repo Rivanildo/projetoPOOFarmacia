@@ -16,7 +16,7 @@ public class Farmacia {
 	}
 
 
-	public void cadastraProduto(long codProduto, double preco) throws ProdutoJaExistenteException {
+	public void cadastraProduto(long codProduto, double preco) {
 		for (Produto p: this.produtos) {
 			if (p.getCodProduto() == codProduto) {
 				throw new ProdutoJaExistenteException("Produto já existente!");
@@ -52,5 +52,19 @@ public class Farmacia {
 			throw new ProdutoInexistenteException("Produto não existe ");
 		}
 		
+	}
+
+	public boolean verificaPreco(int codProduto) {
+		boolean valido = true;
+		for( Produto p : this.produtos){
+			if(p.getCodProduto()== codProduto){
+				if(p.getPreco()<=0){
+					valido = false;
+					return valido;
+					
+				}
+			}
+		}
+		return valido;
 	}
 }

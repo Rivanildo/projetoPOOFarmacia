@@ -16,23 +16,23 @@ public class Farmacia {
 	}
 
 
-	public void cadastraProduto(long numProduto) throws ProdutoJaExistenteException {
+	public void cadastraProduto(long codProduto, double preco) throws ProdutoJaExistenteException {
 		for (Produto p: this.produtos) {
-			if (p.getCodProduto() == numProduto) {
+			if (p.getCodProduto() == codProduto) {
 				throw new ProdutoJaExistenteException("Produto já existente!");
 			}
 		}
-		Produto produto = new Produto(numProduto);
+		Produto produto = new Produto(codProduto, preco);
 		this.produtos.add(produto);
 		
 	}
 
 	
 
-	public boolean isCadastrado(int numProduto) {
+	public boolean isCadastrado(int codProduto) {
 		
 		for(Produto p : this.produtos){
-			if(p.getCodProduto() == numProduto ){
+			if(p.getCodProduto() == codProduto ){
 				return true;
 			}
 		}

@@ -37,11 +37,20 @@ public class FarmaciaTest {
 		farmacia.cadastraProduto(1234);
 		assertTrue(farmacia.isCadastrado(1234));
 	}
+	
 	@Test (expected=ProdutoJaExistenteException.class)
 	public void cadastrarUmProdutoQueJaExiste() throws ProdutoJaExistenteException{
 		farmacia.cadastraProduto(111);
 		farmacia.cadastraProduto(111);
 		fail("devia ter lançado exception");
 	}
+	
+	@Test
+	public void verificaSeUmProdutoFoiRemovidoTest() throws ProdutoJaExistenteException{
+		farmacia.cadastraProduto(123);
+		farmacia.removerProduto(123);
+		assertFalse(farmacia.isCadastrado(123));
+	}
+	
 
 }

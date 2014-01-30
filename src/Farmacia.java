@@ -39,4 +39,18 @@ public class Farmacia {
 		return false;
 		
 	}
+
+	public void removerProduto(int numProduto) {
+		boolean removeu = false;
+		for(Produto p : this.produtos){
+			if(p.getNumProduto() == numProduto){
+				produtos.remove(p);
+				removeu = true;
+			}
+		}
+		if(!removeu){
+			throw new ProdutoInexistenteException("Produto não existe ");
+		}
+		
+	}
 }

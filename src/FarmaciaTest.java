@@ -62,20 +62,18 @@ public class FarmaciaTest {
 	@Test
 	public void cadastraProdutoComPrecoValido() {
 		farmacia.cadastraProduto(332,2.00);
-		assertTrue(farmacia.verificaPreco(332));
+		
 	}
 	
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoNegativo(){
 		farmacia.cadastraProduto(55, -4);
-		farmacia.verificaPreco(55);
 		fail("Deveria ter lancado a excecao");
 	}
 	
 	@Test(expected = PrecoInvalidoException.class)
-	public void cadastraProdutoComPrecoZero(){
+	public void cadastraProdutoComPrecoIgualAZero(){
 		farmacia.cadastraProduto(51, 0);
-		farmacia.verificaPreco(51);
 		fail("Deveria ter lancado a excecao");
 	}
 	

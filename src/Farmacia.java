@@ -22,7 +22,7 @@ public class Farmacia {
 				throw new ProdutoJaExistenteException("Produto já existente!");
 			}
 		}
-		if(preco <= 0){
+		if(this.verificaPreco(preco)){
 			throw new PrecoInvalidoException("Cadastre um preço maior que R$ 0,00");
 		}else{
 			Produto produto = new Produto(codProduto, preco);
@@ -51,6 +51,11 @@ public class Farmacia {
 		}
 		if(!removeu){
 			throw new ProdutoInexistenteException("Produto não existe ");
-		}	
+		}
+		
+	}
+
+	private boolean verificaPreco(double preco) {
+		return preco<=0;
 	}
 }

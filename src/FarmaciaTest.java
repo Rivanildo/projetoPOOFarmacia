@@ -72,5 +72,11 @@ public class FarmaciaTest {
 		fail("Deveria ter lancado a excecao");
 	}
 	
-
+	@Test(expected = PrecoInvalidoException.class)
+	public void cadastraProdutoComPrecoZero(){
+		farmacia.cadastraProduto(51, 0);
+		farmacia.verificaPreco(51);
+		fail("Deveria ter lancado a excecao");
+	}
+	
 }

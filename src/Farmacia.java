@@ -59,8 +59,7 @@ public class Farmacia {
 		for( Produto p : this.produtos){
 			if(p.getCodProduto()== codProduto){
 				if(p.getPreco()<=0){
-					valido = false;
-					return valido;
+					throw new PrecoInvalidoException("Cadastre um preço maior que R$ 0,00");
 					
 				}
 			}

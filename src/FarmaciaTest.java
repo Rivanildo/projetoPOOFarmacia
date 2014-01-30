@@ -52,5 +52,12 @@ public class FarmaciaTest {
 		assertFalse(farmacia.isCadastrado(123));
 	}
 	
+	@Test(expected = ProdutoInexistenteException.class)
+	public void removerProdutoInexistenteTest() throws ProdutoJaExistenteException{
+		farmacia.cadastraProduto(567);
+		farmacia.removerProduto(999);
+		fail("Deveria ter lancado a excecao");
+	}
+	
 
 }

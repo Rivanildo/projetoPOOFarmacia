@@ -15,11 +15,11 @@ public class FarmaciaTest {
 	}
 	
 	@Test
-	public void verificaSeAFarmaciaEstaVazia(){
+	public void verificaSeAFarmaciaFoiCriada(){
 		assertNotNull(this.farmacia);
 	}
 	@Test
-	public void isEmpty(){
+	public void verificaSeEstaVazia(){
 		assertEquals(0, this.farmacia.getQtdeProdutosCadastrados());
 	}
 	

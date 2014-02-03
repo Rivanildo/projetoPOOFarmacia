@@ -18,20 +18,29 @@ public class Farmacia {
 	}
 
 
-	public void cadastraProduto(long codProduto, double preco) {
-		for (Produto p: this.produtos) {
-			if (p.getCodProduto() == codProduto) {
-				throw new ProdutoJaExistenteException("Produto já existente!");
-			}
-		}
-		if(this.verificaPreco(preco)){
+	public void cadastraProduto(int codProduto, double preco) {
+		validarProduto(codProduto, preco);
+		Produto produto = new Produto(codProduto, preco);
+		this.produtos.add(produto);
+	}
+
+	private void validarProduto(int codProduto, double preco) {
+		validarCodigo(codProduto);
+		validarPreco(preco);
+	}
+
+	private void validarPreco(double preco) {
+		if(preco<=0){
 			throw new PrecoInvalidoException("Cadastre um preço maior que R$ 0,00");
-		}else{
-			Produto produto = new Produto(codProduto, preco);
-			this.produtos.add(produto);
 		}
 	}
 
+	private void validarCodigo(int codProduto) {
+		if (isCadastrado(codProduto)) {
+			throw new ProdutoJaExistenteException("Produto já existente!");			
+		}
+	}
+	
 	public boolean isCadastrado(int codProduto) {
 		
 		for(Produto p : this.produtos){
@@ -55,9 +64,5 @@ public class Farmacia {
 			throw new ProdutoInexistenteException("Produto não existe ");
 		}
 		
-	}
-
-	private boolean verificaPreco(double preco) {
-		return preco<=0;
 	}
 }

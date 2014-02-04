@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class FarmaciaTest {
 	Farmacia farmacia;
+	private static final String MSG_FAIL = "Deveria ter lancado a excecao" ;
 	
 	@Before
 	public void iniciar(){
@@ -44,7 +45,7 @@ public class FarmaciaTest {
 	public void cadastrarUmProdutoQueJaExiste() {
 		farmacia.cadastraProduto(111,2.00);
 		farmacia.cadastraProduto(111,2.00);
-		fail("devia ter lançado exception");
+		fail(MSG_FAIL);
 	}
 	
 	@Test
@@ -58,7 +59,7 @@ public class FarmaciaTest {
 	public void removerProdutoInexistenteTest() {
 		farmacia.cadastraProduto(567,2.00);
 		farmacia.removerProduto(999);
-		fail("Deveria ter lancado a excecao");
+		fail(MSG_FAIL);
 	}
 	
 	@Test
@@ -71,13 +72,13 @@ public class FarmaciaTest {
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoNegativo(){
 		farmacia.cadastraProduto(55, -4);
-		fail("Deveria ter lancado a excecao");
+		fail(MSG_FAIL);
 	}
 	
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoIgualAZero(){
 		farmacia.cadastraProduto(51, 0);
-		fail("Deveria ter lancado a excecao");
+		fail(MSG_FAIL);
 	}
 	
 }

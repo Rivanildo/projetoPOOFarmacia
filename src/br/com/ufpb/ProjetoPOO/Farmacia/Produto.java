@@ -2,6 +2,7 @@ package br.com.ufpb.ProjetoPOO.Farmacia;
 
 public class Produto {
 
+	private String nome;
 	private long codProduto;
 	private double preco;
 	
@@ -10,9 +11,18 @@ public class Produto {
 		
 	}
 	
-	public Produto(long codProduto, double preco){
+	public Produto(String nome, long codProduto, double preco){
+		this.nome = nome;
 		this.codProduto = codProduto;
 		this.preco = preco; 
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	public long getCodProduto() {

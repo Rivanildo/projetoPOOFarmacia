@@ -18,50 +18,65 @@ public class Farmacia {
 	}
 
 
-	public void cadastraProduto(int codProduto, double preco) {
-		validarProduto(codProduto, preco);
-		Produto produto = new Produto(codProduto, preco);
+	public void cadastraProduto(String nome, int codProduto, double preco) {
+		validarProduto(nome, codProduto, preco);
+		Produto produto = new Produto(nome,codProduto, preco);
 		this.produtos.add(produto);
 	}
 
-	private void validarProduto(int codProduto, double preco) {
+	private void validarProduto(String nome, int codProduto, double preco) {
+		validarNome(nome);
 		validarCodigo(codProduto);
 		validarPreco(preco);
+	}
+	
+	private void validarNome(String nome){
+		if(isNomeCadastrado(nome)) {
+			throw new ProdutoJaExistenteException("Produto j√° existente!");
+		}
 	}
 
 	private void validarPreco(double preco) {
 		if(preco<=0){
-			throw new PrecoInvalidoException("Cadastre um preÁo maior que R$ 0,00");
+			throw new PrecoInvalidoException("Cadastre um preÔøΩo maior que R$ 0,00");
 		}
 	}
 
 	private void validarCodigo(int codProduto) {
 		if (isCadastrado(codProduto)) {
-			throw new ProdutoJaExistenteException("Produto j· existente!");			
+			throw new ProdutoJaExistenteException("Produto jÔøΩ existente!");			
 		}
 	}
 	
 	public boolean isCadastrado(int codProduto) {
-		
 		for(Produto p : this.produtos){
-			if(p.getCodProduto() == codProduto ){
+			if(p.getCodProduto() == codProduto){
+				return true;
+			}
+		}
+		return false;	
+	}
+	
+	public boolean isNomeCadastrado(String nome){
+		for(Produto p: this.produtos){
+			if(p.getNome() == nome){
 				return true;
 			}
 		}
 		return false;
-		
 	}
 
-	public void removerProduto(int numProduto) {
+	public void removerProdutoPeloCodigo(int numProduto) {
 		boolean removeu = false;
-		for(Produto p : this.produtos){
+		for(Produto p: this.produtos){
 			if(p.getCodProduto() == numProduto){
-				produtos.remove(p);
+				this.produtos.remove(p);
 				removeu = true;
+				break;
 			}
 		}
 		if(!removeu){
-			throw new ProdutoInexistenteException("Produto n„o existe ");
+			throw new ProdutoInexistenteException("Produto nÔøΩo existe ");
 		}
 		
 	}

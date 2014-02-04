@@ -26,58 +26,65 @@ public class FarmaciaTest {
 	
 	@Test
 	public void cadastraUmProduto() {
-		farmacia.cadastraProduto(999,2.00);
+		farmacia.cadastraProduto("aaa",999,2.00);
 		assertEquals(1,farmacia.getQtdeProdutosCadastrados());
 	}
 	@Test
 	public void cadastraDoisProdutos() {
-		farmacia.cadastraProduto(123,3.30);
-		farmacia.cadastraProduto(321,1.00);
+		farmacia.cadastraProduto("bbb",123,3.30);
+		farmacia.cadastraProduto("ccc",321,1.00);
 		assertEquals(2,farmacia.getQtdeProdutosCadastrados());
 	}
 	@Test
 	public void verificaSeUmProdutoFoiCadastrato() {
-		farmacia.cadastraProduto(1234,0.99);
+		farmacia.cadastraProduto("ddd",1234,0.99);
 		assertTrue(farmacia.isCadastrado(1234));
 	}
 	
 	@Test (expected=ProdutoJaExistenteException.class)
 	public void cadastrarUmProdutoQueJaExiste() {
-		farmacia.cadastraProduto(111,2.00);
-		farmacia.cadastraProduto(111,2.00);
+		farmacia.cadastraProduto("eee",111,2.00);
+		farmacia.cadastraProduto("eee",111,2.00);
 		fail(MSG_FAIL);
 	}
 	
 	@Test
 	public void verificaSeUmProdutoFoiRemovidoTest() {
-		farmacia.cadastraProduto(123,2.00);
-		farmacia.removerProduto(123);
-		assertFalse(farmacia.isCadastrado(123));
+		farmacia.cadastraProduto("abc",555,2.00);
+		farmacia.removerProdutoPeloCodigo(555);
+		assertFalse(farmacia.isCadastrado(555));
 	}
 	
 	@Test(expected = ProdutoInexistenteException.class)
 	public void removerProdutoInexistenteTest() {
-		farmacia.cadastraProduto(567,2.00);
-		farmacia.removerProduto(999);
+		farmacia.cadastraProduto("abb",567,2.00);
+		farmacia.removerProdutoPeloCodigo(999);
 		fail(MSG_FAIL);
 	}
 	
 	@Test
 	public void cadastraProdutoComPrecoValido() {
-		farmacia.cadastraProduto(332,2.00);
+		farmacia.cadastraProduto("fff",332,2.00);
 		assertTrue(farmacia.isCadastrado(332));
 		
 	}
 	
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoNegativo(){
-		farmacia.cadastraProduto(55, -4);
+		farmacia.cadastraProduto("scs",55, -4);
 		fail(MSG_FAIL);
 	}
 	
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoIgualAZero(){
-		farmacia.cadastraProduto(51, 0);
+		farmacia.cadastraProduto("aaa",51, 0);
+		fail(MSG_FAIL);
+	}
+	
+	@Test(expected = ProdutoJaExistenteException.class)
+	public void cadastrarProdutoComNomeJaExistente(){
+		farmacia.cadastraProduto("aaa", 123, 2.50);
+		farmacia.cadastraProduto("aaa", 444, 3.20);
 		fail(MSG_FAIL);
 	}
 	

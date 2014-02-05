@@ -93,4 +93,14 @@ public class Farmacia {
 		}
 		throw new ProdutoInexistenteException("Produto inexistente");
 	}
+
+	public Produto pesquisaProdutoPeloCodigo(int codProduto){
+		for(Produto p: this.produtos){
+			if(p.getCodProduto()==codProduto){
+				return p;
+				
+			}
+		}
+		throw new ProdutoInexistenteException("Produto com código inexistente");
+	}
 }

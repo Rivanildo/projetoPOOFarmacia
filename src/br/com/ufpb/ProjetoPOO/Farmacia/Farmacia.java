@@ -18,9 +18,9 @@ public class Farmacia {
 	}
 
 
-	public void cadastraProduto(String nome, int codProduto, double preco) {
+	public void cadastraProduto(String nome, int codProduto, double preco, int qtde) {
 		validarProduto(nome, codProduto, preco);
-		Produto produto = new Produto(nome,codProduto, preco);
+		Produto produto = new Produto(nome,codProduto, preco, qtde);
 		this.produtos.add(produto);
 	}
 

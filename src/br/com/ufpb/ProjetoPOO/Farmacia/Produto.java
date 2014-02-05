@@ -11,11 +11,11 @@ public class Produto {
 		
 	}
 	
-	public Produto(String nome, long codProduto, double preco){
+	public Produto(String nome, long codProduto, double preco,int qtde){
 		this.nome = nome;
 		this.codProduto = codProduto;
 		this.preco = preco; 
-		this.quantidade = 0;
+		this.quantidade = qtde;
 	}
 	
 	public String getNome() {

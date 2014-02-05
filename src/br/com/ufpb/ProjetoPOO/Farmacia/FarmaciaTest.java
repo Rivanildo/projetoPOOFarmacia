@@ -89,8 +89,14 @@ public class FarmaciaTest {
 	}
 	
 	@Test(expected = ProdutoSemNomeException.class)
-	public void cadastrarProdutoSemNome() {
+	public void cadastrarProdutoSemNomeTest() {
 		farmacia.cadastraProduto("", 123, 2.30);
+		fail(MSG_FAIL);
+	}
+	
+	@Test(expected = ProdutoSemNomeException.class)
+	public void cadastrarProdutoSemNomeTest2() {
+		farmacia.cadastraProduto(null, 123, 2.30);
 		fail(MSG_FAIL);
 	}
 	

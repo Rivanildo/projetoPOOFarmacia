@@ -117,7 +117,7 @@ public class FarmaciaTest {
 	public void pesquisarProdutoPeloCodigoTest(){
 		
 		farmacia.cadastraProduto("Paracetamol",654,4.20);
-		Produto p = farmacia.pesquisaProdutoPeloCodigo(654);
+		Produto p = farmacia.pesquisarProdutoPeloCodigo(654);
 		assertEquals("Paracetamol", p.getNome());
 		assertEquals(654, p.getCodProduto());
 		assertEquals(new Double(4.20),new Double(p.getPreco()));

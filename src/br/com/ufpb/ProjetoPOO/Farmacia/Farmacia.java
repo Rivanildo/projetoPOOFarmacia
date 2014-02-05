@@ -83,4 +83,14 @@ public class Farmacia {
 		}
 		
 	}
+	
+	public Produto pesquisarProdutoPeloNome(String nome){
+		
+		for(Produto p : this.produtos){
+			if(p.getNome().equals(nome)){
+				return p;
+			}
+		}
+		throw new ProdutoInexistenteException("Produto inexistente");
+	}
 }

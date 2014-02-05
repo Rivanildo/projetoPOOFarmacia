@@ -99,5 +99,19 @@ public class FarmaciaTest {
 		farmacia.cadastraProduto(null, 123, 2.30);
 		fail(MSG_FAIL);
 	}
+	@Test
+	public void pesquisarProdutoPeloNomeTest(){
+		farmacia.cadastraProduto("Dipirona", 1234, 5.00);
+		assertEquals("Dipirona", farmacia.pesquisarProdutoPeloNome("Dipirona").getNome());
+		assertEquals(1234, farmacia.pesquisarProdutoPeloNome("Dipirona").getCodProduto());
+		assertEquals(new Double(5.00),new Double(farmacia.pesquisarProdutoPeloNome("Dipirona").getPreco()));
+	}
+	
+	@Test(expected = ProdutoInexistenteException.class)
+	public void pesquisarProdutoInexistentePeloNomeTest(){
+		farmacia.cadastraProduto("Paracetamol",654,4.20);
+		farmacia.pesquisarProdutoPeloNome("Dorflex");
+	}
+	
 	
 }

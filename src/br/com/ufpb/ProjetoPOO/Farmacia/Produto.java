@@ -5,7 +5,7 @@ public class Produto {
 	private String nome;
 	private long codProduto;
 	private double preco;
-	
+	private int quantidade;
 	public Produto(long codProduto){
 		this.codProduto = codProduto;
 		
@@ -15,6 +15,7 @@ public class Produto {
 		this.nome = nome;
 		this.codProduto = codProduto;
 		this.preco = preco; 
+		this.quantidade = 0;
 	}
 	
 	public String getNome() {

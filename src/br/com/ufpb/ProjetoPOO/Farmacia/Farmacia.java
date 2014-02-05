@@ -34,6 +34,9 @@ public class Farmacia {
 		if(isNomeCadastrado(nome)) {
 			throw new ProdutoJaExistenteException("Produto já existente!");
 		}
+		else if(nome == null || nome.equals("")){
+			throw new ProdutoSemNomeException("O produto está sem nome!");
+		}
 	}
 
 	private void validarPreco(double preco) {

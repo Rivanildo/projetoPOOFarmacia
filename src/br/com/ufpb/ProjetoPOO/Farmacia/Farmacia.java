@@ -19,17 +19,25 @@ public class Farmacia {
 
 
 	public void cadastraProduto(String nome, int codProduto, double preco, int qtde) {
-		validarProduto(nome, codProduto, preco);
+		validarProduto(nome, codProduto, preco, qtde);
 		Produto produto = new Produto(nome,codProduto, preco, qtde);
 		this.produtos.add(produto);
 	}
 
-	private void validarProduto(String nome, int codProduto, double preco) {
+	private void validarProduto(String nome, int codProduto, double preco, int qtde) {
 		validarNome(nome);
 		validarCodigo(codProduto);
 		validarPreco(preco);
+		validarQuantidade(qtde);
 	}
 	
+	private void validarQuantidade(int qtde) {
+		if(qtde<0){
+			throw new QuantidadeInvalidaException("Quantidade Inválida");
+		}
+		
+	}
+
 	private void validarNome(String nome){
 		if(isNomeCadastrado(nome)) {
 			throw new ProdutoJaExistenteException("Produto jÃ¡ existente!");

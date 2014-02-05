@@ -111,11 +111,11 @@ public class FarmaciaTest {
 	public void pesquisarProdutoInexistentePeloNomeTest(){
 		farmacia.cadastraProduto("Paracetamol",654,4.20);
 		farmacia.pesquisarProdutoPeloNome("Dorflex");
+		fail(MSG_FAIL);
 	}
 	
 	@Test
 	public void pesquisarProdutoPeloCodigoTest(){
-		
 		farmacia.cadastraProduto("Paracetamol",654,4.20);
 		Produto p = farmacia.pesquisarProdutoPeloCodigo(654);
 		assertEquals("Paracetamol", p.getNome());
@@ -123,5 +123,9 @@ public class FarmaciaTest {
 		assertEquals(new Double(4.20),new Double(p.getPreco()));
 	}
 	
-	
+	@Test (expected = ProdutoInexistenteException.class)
+	public void pesquisarProdutoInexistentePeloCodigoTest(){
+		farmacia.pesquisarProdutoPeloCodigo(998);
+		fail(MSG_FAIL);
+	}
 }

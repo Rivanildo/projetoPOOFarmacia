@@ -128,4 +128,11 @@ public class FarmaciaTest {
 		farmacia.pesquisarProdutoPeloCodigo(998);
 		fail(MSG_FAIL);
 	}
+	
+	@Test(expected = ProdutoInexistenteException.class)
+	public void pesquisarProdutoInexistenteTest(){
+		farmacia.cadastraProduto("Anador",145,3.00, 3);
+		farmacia.pesquisarProdutoPeloCodigo(146);
+		fail(MSG_FAIL);
+	}
 }

@@ -11,11 +11,18 @@ public class Produto {
 		
 	}
 	
+	public Produto(String nome, long codProduto, double preco){
+		this.nome = nome;
+		this.codProduto = codProduto;
+		this.preco = preco; 
+		this.quantidade=0;
+	}
+	
 	public Produto(String nome, long codProduto, double preco,int qtde){
 		this.nome = nome;
 		this.codProduto = codProduto;
 		this.preco = preco; 
-		this.setQuantidade(qtde);
+		this.quantidade=qtde;
 	}
 	
 	public String getNome() {

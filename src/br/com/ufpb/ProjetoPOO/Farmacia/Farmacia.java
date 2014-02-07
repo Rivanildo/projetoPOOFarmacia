@@ -115,4 +115,17 @@ public class Farmacia {
 		Produto p = this.pesquisarProdutoPeloCodigo(codProduto);
 		p.adicionarQuantidadeDeProdutoEmEstoque(quantidade);
 	}
+
+	public List <Produto> buscarProtudosPeloPreco(double preco) {
+		List <Produto> listaProdutos = new LinkedList <Produto>();
+		for (Produto p: this.produtos){
+			if(p.getPreco() == preco){
+				listaProdutos.add(p);
+			}
+		}
+		if (listaProdutos.size() == 0){
+			throw new ProdutoInexistenteException("Não existe produto com esse preço");
+		}
+		return listaProdutos;
+	}
 }

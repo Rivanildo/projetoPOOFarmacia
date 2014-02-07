@@ -155,4 +155,14 @@ public class FarmaciaTest {
 		farmacia.cadastraProduto("Anador", 123, 2.30, 0);
 		assertEquals(1,farmacia.buscarProtudosPeloPreco(2.30).size());
 	}
+	
+	@Test
+	public void buscarProdutosPeloPrecoTest2(){
+		farmacia.cadastraProduto("Anador", 111, 2.30, 0);
+		farmacia.cadastraProduto("Dipirona", 222, 2.30, 0);
+		farmacia.cadastraProduto("Benegrip", 333, 2.30, 0);
+		farmacia.cadastraProduto("Doril", 444, 2.30, 0);
+		farmacia.removerProdutoPeloCodigo(222);
+		assertEquals(3,farmacia.buscarProtudosPeloPreco(2.30).size());
+	}
 }

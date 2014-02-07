@@ -142,4 +142,12 @@ public class FarmaciaTest {
 		farmacia.adicionarProdutoEmEstoque(123, 10);
 		assertEquals(10,farmacia.pesquisarProdutoPeloCodigo(123).getQuantidade());
 	}
+	
+	@Test
+	public void verificaQuantidadeEmEstoqueTest(){
+		farmacia.cadastraProduto("Escova de dente - Oral-B", 5543, 5.00, 30);
+		farmacia.adicionarProdutoEmEstoque(5543, 20);
+		assertEquals(50,farmacia.pesquisarProdutoPeloCodigo(5543).getQuantidade());
+		
+	}
 }

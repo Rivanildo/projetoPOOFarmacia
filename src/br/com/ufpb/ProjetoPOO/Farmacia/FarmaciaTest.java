@@ -135,4 +135,11 @@ public class FarmaciaTest {
 		farmacia.pesquisarProdutoPeloCodigo(146);
 		fail(MSG_FAIL);
 	}
+	
+	@Test
+	public void adicionarQuantidadeDeUmProdutoNoEstoqueTest(){
+		farmacia.cadastraProduto("Dipirona", 123, 1.20, 0);
+		farmacia.adicionarProdutoEmEstoque(123, 10);
+		assertEquals(10,farmacia.pesquisarProdutoPeloCodigo(123).getQuantidade());
+	}
 }

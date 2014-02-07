@@ -33,7 +33,7 @@ public class Farmacia {
 	
 	private void validarQuantidade(int qtde) {
 		if(qtde<0){
-			throw new QuantidadeInvalidaException("Quantidade Inválida");
+			throw new QuantidadeInvalidaException("Quantidade Invï¿½lida");
 		}
 		
 	}
@@ -108,6 +108,11 @@ public class Farmacia {
 				return p;	
 			}
 		}
-		throw new ProdutoInexistenteException("Produto com código inexistente");
+		throw new ProdutoInexistenteException("Produto com cï¿½digo inexistente");
+	}
+
+	public void adicionarProdutoEmEstoque(int codProduto, int quantidade) {
+		Produto p = this.pesquisarProdutoPeloCodigo(codProduto);
+		p.adicionarQuantidadeDeProdutoEmEstoque(quantidade);
 	}
 }

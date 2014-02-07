@@ -6,9 +6,9 @@ public class Produto {
 	private long codProduto;
 	private double preco;
 	private int quantidade;
+	
 	public Produto(long codProduto){
-		this.codProduto = codProduto;
-		
+		this.codProduto = codProduto;	
 	}
 	
 	public Produto(String nome, long codProduto, double preco){
@@ -46,10 +46,10 @@ public class Produto {
 	}
 
 	public int getQuantidade() {
-		return quantidade;
+		return this.quantidade;
 	}
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+	
+	public void adicionarQuantidadeDeProdutoEmEstoque(int quantidade) {
+		this.quantidade += quantidade;
 	}
 }

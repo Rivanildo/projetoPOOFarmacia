@@ -1,4 +1,4 @@
-package br.com.ufpb.ProjetoPOO.Farmacia;
+package br.com.ufpb.projetopoo.farmacia;
 
 public class Produto {
 
@@ -6,33 +6,33 @@ public class Produto {
 	private long codProduto;
 	private double preco;
 	private int quantidade;
-	
-	public Produto(long codProduto){
-		this.codProduto = codProduto;	
+
+	public Produto(long codProduto) {
+		this.codProduto = codProduto;
 	}
-	
-	public Produto(String nome, long codProduto, double preco){
+
+	public Produto(String nome, long codProduto, double preco) {
 		this.nome = nome;
 		this.codProduto = codProduto;
-		this.preco = preco; 
-		this.quantidade=0;
+		this.preco = preco;
+		this.quantidade = 0;
 	}
-	
-	public Produto(String nome, long codProduto, double preco,int qtde){
+
+	public Produto(String nome, long codProduto, double preco, int qtde) {
 		this.nome = nome;
 		this.codProduto = codProduto;
-		this.preco = preco; 
-		this.quantidade=qtde;
+		this.preco = preco;
+		this.quantidade = qtde;
 	}
-	
+
 	public String getNome() {
 		return this.nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public long getCodProduto() {
 		return codProduto;
 	}
@@ -48,7 +48,7 @@ public class Produto {
 	public int getQuantidade() {
 		return this.quantidade;
 	}
-	
+
 	public void adicionarQuantidadeDeProdutoEmEstoque(int quantidade) {
 		this.quantidade += quantidade;
 	}

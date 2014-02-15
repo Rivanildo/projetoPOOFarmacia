@@ -1,8 +1,8 @@
-package br.com.ufpb.ProjetoPOO.Farmacia;
+package br.com.ufpb.projetopoo.farmacia;
 
-public class PrecoInvalidoException extends RuntimeException{
-	
-	public PrecoInvalidoException(String msg){
+public class PrecoInvalidoException extends RuntimeException {
+
+	public PrecoInvalidoException(String msg) {
 		super(msg);
 	}
 

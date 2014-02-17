@@ -7,6 +7,7 @@ public class Produto {
 	private double preco;
 	private int quantidade;
 
+	//Fazer o método equals
 	public Produto(long codProduto) {
 		this.codProduto = codProduto;
 	}

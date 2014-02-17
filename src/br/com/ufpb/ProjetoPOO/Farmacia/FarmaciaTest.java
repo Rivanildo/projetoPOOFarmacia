@@ -2,6 +2,8 @@ package br.com.ufpb.projetopoo.farmacia;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,13 +23,18 @@ public class FarmaciaTest {
 
 	@Test
 	public void verificaSeEstaVazia() {
+		assertEquals(0, this.farmacia.listProdutos().size());
 		assertEquals(0, this.farmacia.getQtdeProdutosCadastrados());
 	}
 
 	@Test
 	public void cadastraUmProduto() {
+		//Usar DTO - Data Transfer Object
 		farmacia.cadastraProduto("aaa", 999, 2.00, 2);
 		assertEquals(1, farmacia.getQtdeProdutosCadastrados());
+		List<Produto> produtos = this.farmacia.listProdutos();
+		assertEquals(1, produtos.size());
+		assertEquals(produto1, produtos.get(0));
 	}
 
 	@Test
@@ -40,7 +47,7 @@ public class FarmaciaTest {
 	@Test
 	public void verificaSeUmProdutoFoiCadastrato() {
 		farmacia.cadastraProduto("ddd", 1234, 0.99, 2);
-		assertTrue(farmacia.isCadastrado(1234));
+		assertEquals(produto1, farmacia.getProduto(1234));
 	}
 
 	@Test(expected = ProdutoJaExistenteException.class)
@@ -54,7 +61,7 @@ public class FarmaciaTest {
 	public void verificaSeUmProdutoFoiRemovidoTest() {
 		farmacia.cadastraProduto("abc", 555, 2.00, 2);
 		farmacia.removerProdutoPeloCodigo(555);
-		assertFalse(farmacia.isCadastrado(555));
+		assertNull(farmacia.getProduto(555));
 	}
 
 	@Test(expected = ProdutoInexistenteException.class)
@@ -64,7 +71,7 @@ public class FarmaciaTest {
 		fail(MSG_FAIL);
 	}
 
-	@Test
+	@Test//Cortar
 	public void cadastraProdutoComPrecoValido() {
 		farmacia.cadastraProduto("fff", 332, 2.00, 2);
 		assertTrue(farmacia.isCadastrado(332));
@@ -127,12 +134,12 @@ public class FarmaciaTest {
 		assertEquals("Paracetamol", p.getNome());
 		assertEquals(654, p.getCodProduto());
 		assertEquals(new Double(4.20), new Double(p.getPreco()));
+		//Trocar pelo equals de produto
 	}
 
 	@Test(expected = ProdutoInexistenteException.class)
 	public void pesquisarProdutoInexistentePeloCodigoTest() {
 		farmacia.pesquisarProdutoPeloCodigo(998);
-		fail(MSG_FAIL);
 	}
 
 	@Test(expected = ProdutoInexistenteException.class)
@@ -150,6 +157,21 @@ public class FarmaciaTest {
 				.getQuantidade());
 	}
 
+	
+//	@Test
+//	public void adicionarQuantidadeDeUmProdutoNoEstoqueTest234() {
+//		try {
+//			//faz algo que deve lancar exc
+//			
+//			fail("sgsasg");
+//			
+//		} catch  (Exception e) {
+//			//Continua
+//		}
+//	}
+	
+	
+	
 	@Test
 	public void verificaQuantidadeEmEstoqueTest() {
 		farmacia.cadastraProduto("Escova de dente - Oral-B", 5543, 5.00, 30);
@@ -174,3 +196,5 @@ public class FarmaciaTest {
 		assertEquals(3, farmacia.buscarProtudosPeloPreco(2.30).size());
 	}
 }
+
+//Fazer os métodos de edição de produto

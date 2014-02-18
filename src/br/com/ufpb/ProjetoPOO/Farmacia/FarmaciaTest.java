@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class FarmaciaTest {
 	Farmacia farmacia;
-	private static final String MSG_FAIL = "Deveria ter lancado a excecao";
+	
 
 	@Before
 	public void iniciar() {
@@ -24,14 +24,14 @@ public class FarmaciaTest {
 	@Test
 	public void verificaSeEstaVazia() {
 		assertEquals(0, this.farmacia.listProdutos().size());
-		assertEquals(0, this.farmacia.getQtdeProdutosCadastrados());
+		
 	}
 
 	@Test
 	public void cadastraUmProduto() {
 		//Usar DTO - Data Transfer Object
-		farmacia.cadastraProduto("aaa", 999, 2.00, 2);
-		assertEquals(1, farmacia.getQtdeProdutosCadastrados());
+		Produto produto1 = new Produto("aaa", 999, 2.00);
+		farmacia.cadastraProduto(produto1 , 2);
 		List<Produto> produtos = this.farmacia.listProdutos();
 		assertEquals(1, produtos.size());
 		assertEquals(produto1, produtos.get(0));
@@ -39,74 +39,73 @@ public class FarmaciaTest {
 
 	@Test
 	public void cadastraDoisProdutos() {
-		farmacia.cadastraProduto("bbb", 123, 3.30, 2);
-		farmacia.cadastraProduto("ccc", 321, 1.00, 2);
-		assertEquals(2, farmacia.getQtdeProdutosCadastrados());
+		Produto produto1 = new Produto("bbb", 123, 3.30);
+		Produto produto2 = new Produto("ccc", 321, 1.00);
+		farmacia.cadastraProduto(produto1, 2);
+		farmacia.cadastraProduto(produto2, 2);
+		assertEquals(2, farmacia.listProdutos().size());
 	}
 
 	@Test
 	public void verificaSeUmProdutoFoiCadastrato() {
-		farmacia.cadastraProduto("ddd", 1234, 0.99, 2);
+		Produto produto1 = new Produto("ddd", 1234, 0.99);
+		farmacia.cadastraProduto(produto1, 2);
 		assertEquals(produto1, farmacia.getProduto(1234));
 	}
 
 	@Test(expected = ProdutoJaExistenteException.class)
 	public void cadastrarUmProdutoQueJaExiste() {
-		farmacia.cadastraProduto("eee", 111, 2.00, 2);
-		farmacia.cadastraProduto("eee", 111, 2.00, 2);
-		fail(MSG_FAIL);
+		Produto produto1 = new Produto("eee", 111, 2.00);
+		Produto produto2 = new Produto("eee", 111, 2.00);
+		farmacia.cadastraProduto(produto1, 2);
+		farmacia.cadastraProduto(produto2, 2);
 	}
 
 	@Test
 	public void verificaSeUmProdutoFoiRemovidoTest() {
-		farmacia.cadastraProduto("abc", 555, 2.00, 2);
+		Produto p = new Produto("abc", 555, 2.00);
+		farmacia.cadastraProduto(p , 2);
 		farmacia.removerProdutoPeloCodigo(555);
 		assertNull(farmacia.getProduto(555));
 	}
 
 	@Test(expected = ProdutoInexistenteException.class)
 	public void removerProdutoInexistenteTest() {
-		farmacia.cadastraProduto("abb", 567, 2.00, 2);
+		Produto p = new Produto("abb", 567, 2.00);
+		farmacia.cadastraProduto(p , 2);
 		farmacia.removerProdutoPeloCodigo(999);
-		fail(MSG_FAIL);
+		
 	}
-
-	@Test//Cortar
-	public void cadastraProdutoComPrecoValido() {
-		farmacia.cadastraProduto("fff", 332, 2.00, 2);
-		assertTrue(farmacia.isCadastrado(332));
-
-	}
-
+	
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoNegativo() {
 		farmacia.cadastraProduto("scs", 55, -4, 2);
-		fail(MSG_FAIL);
+		
 	}
 
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoIgualAZero() {
 		farmacia.cadastraProduto("aaa", 51, 0, 2);
-		fail(MSG_FAIL);
+		
 	}
 
 	@Test(expected = ProdutoJaExistenteException.class)
 	public void cadastrarProdutoComNomeJaExistente() {
 		farmacia.cadastraProduto("aaa", 123, 2.50, 2);
 		farmacia.cadastraProduto("aaa", 444, 3.20, 2);
-		fail(MSG_FAIL);
+		
 	}
 
 	@Test(expected = ProdutoSemNomeException.class)
 	public void cadastrarProdutoSemNomeTest() {
 		farmacia.cadastraProduto("", 123, 2.30, 2);
-		fail(MSG_FAIL);
+		
 	}
 
 	@Test(expected = ProdutoSemNomeException.class)
 	public void cadastrarProdutoSemNomeTest2() {
 		farmacia.cadastraProduto(null, 123, 2.30, 2);
-		fail(MSG_FAIL);
+		
 	}
 
 	@Test
@@ -124,7 +123,7 @@ public class FarmaciaTest {
 	public void pesquisarProdutoInexistentePeloNomeTest() {
 		farmacia.cadastraProduto("Paracetamol", 654, 4.20, 2);
 		farmacia.pesquisarProdutoPeloNome("Dorflex");
-		fail(MSG_FAIL);
+		
 	}
 
 	@Test
@@ -146,7 +145,7 @@ public class FarmaciaTest {
 	public void pesquisarProdutoInexistenteTest() {
 		farmacia.cadastraProduto("Anador", 145, 3.00, 3);
 		farmacia.pesquisarProdutoPeloCodigo(146);
-		fail(MSG_FAIL);
+		
 	}
 
 	@Test

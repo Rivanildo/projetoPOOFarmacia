@@ -6,23 +6,17 @@ import java.util.List;
 public class Farmacia {
 
 	List<Produto> produtos;
-
+	//Criar a classe gerente de produto e jogar tudo isso aqui dentro
 	public Farmacia() {
 		produtos = new LinkedList<Produto>();
 	}
 
-	public Object getQtdeProdutosCadastrados() {
-		return this.produtos.size();
+	public void cadastraProduto(Produto p, int qtde) {
+		validarProduto(p.getNome(), p.getCodProduto(),p.getPreco(), qtde);
+		this.produtos.add(p);
 	}
 
-	public void cadastraProduto(String nome, int codProduto, double preco,
-			int qtde) {
-		validarProduto(nome, codProduto, preco, qtde);
-		Produto produto = new Produto(nome, codProduto, preco, qtde);
-		this.produtos.add(produto);
-	}
-
-	private void validarProduto(String nome, int codProduto, double preco,
+	private void validarProduto(String nome, long codProduto, double preco,
 			int qtde) {
 		validarNome(nome);
 		validarCodigo(codProduto);
@@ -52,13 +46,13 @@ public class Farmacia {
 		}
 	}
 
-	private void validarCodigo(int codProduto) {
+	private void validarCodigo(long codProduto) {
 		if (isCadastrado(codProduto)) {
 			throw new ProdutoJaExistenteException("Produto j� existente!");
 		}
 	}
 
-	public boolean isCadastrado(int codProduto) {
+	private boolean isCadastrado(long codProduto) {
 		for (Produto p : this.produtos) {
 			if (p.getCodProduto() == codProduto) {
 				return true;
@@ -78,8 +72,12 @@ public class Farmacia {
 
 	public void removerProdutoPeloCodigo(int numProduto) {
 		
-		Produto p = this.pesquisarProdutoPeloCodigo(numProduto);
+		Produto p = this.getProduto(numProduto);
+		if(p == null){
+			throw new ProdutoInexistenteException("Produto inexistente!");
+		}
 		this.produtos.remove(p);
+		
 	}
 
 	public Produto pesquisarProdutoPeloNome(String nome) {
@@ -92,18 +90,8 @@ public class Farmacia {
 		throw new ProdutoInexistenteException("Produto inexistente");
 	}
 
-	public Produto pesquisarProdutoPeloCodigo(int codProduto) {
-		for (Produto p : this.produtos) {
-			if (p.getCodProduto() == codProduto) {
-				return p;
-			}
-		}
-		throw new ProdutoInexistenteException(
-				"Produto com c�digo inexistente");
-	}
-
 	public void adicionarProdutoEmEstoque(int codProduto, int quantidade) {
-		Produto p = this.pesquisarProdutoPeloCodigo(codProduto);
+		Produto p = this.getProduto(codProduto);
 		p.adicionarQuantidadeDeProdutoEmEstoque(quantidade);
 	}
 
@@ -119,5 +107,18 @@ public class Farmacia {
 					"Não existe produto com esse preço");
 		}
 		return listaProdutos;
+	}
+
+	public List<Produto> listProdutos() {
+		return this.produtos;
+	}
+
+	public Produto getProduto(long codProduto) {
+		for (Produto p : this.produtos) {
+			if (p.getCodProduto() == codProduto) {
+				return p;
+			}
+		}
+		return null;
 	}
 }

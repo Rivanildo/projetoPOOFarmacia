@@ -79,7 +79,8 @@ public class FarmaciaTest {
 	
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoNegativo() {
-		farmacia.cadastraProduto("scs", 55, -4, 2);
+		Produto p = new Produto("scs", 55, -4);
+		farmacia.cadastraProduto(p , 2);
 		
 	}
 

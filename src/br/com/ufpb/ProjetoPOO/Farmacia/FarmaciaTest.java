@@ -30,8 +30,8 @@ public class FarmaciaTest {
 	@Test
 	public void cadastraUmProduto() {
 		//Usar DTO - Data Transfer Object
-		Produto produto1 = new Produto("aaa", 999, 2.00);
-		farmacia.cadastraProduto(produto1 , 2);
+		Produto produto1 = new Produto("aaa", 999, 2.00, 2);
+		farmacia.cadastraProduto(produto1);
 		List<Produto> produtos = this.farmacia.listProdutos();
 		assertEquals(1, produtos.size());
 		assertEquals(produto1, produtos.get(0));
@@ -39,17 +39,17 @@ public class FarmaciaTest {
 
 	@Test
 	public void cadastraDoisProdutos() {
-		Produto produto1 = new Produto("bbb", 123, 3.30);
-		Produto produto2 = new Produto("ccc", 321, 1.00);
-		farmacia.cadastraProduto(produto1, 2);
-		farmacia.cadastraProduto(produto2, 2);
+		Produto produto1 = new Produto("bbb", 123, 3.30, 2);
+		Produto produto2 = new Produto("ccc", 321, 1.00, 2);
+		farmacia.cadastraProduto(produto1);
+		farmacia.cadastraProduto(produto2);
 		assertEquals(2, farmacia.listProdutos().size());
 	}
 
 	@Test
 	public void verificaSeUmProdutoFoiCadastrato() {
 		Produto produto1 = new Produto("ddd", 1234, 0.99);
-		farmacia.cadastraProduto(produto1, 2);
+		farmacia.cadastraProduto(produto1);
 		assertEquals(produto1, farmacia.getProduto(1234));
 	}
 
@@ -57,14 +57,14 @@ public class FarmaciaTest {
 	public void cadastrarUmProdutoQueJaExiste() {
 		Produto produto1 = new Produto("eee", 111, 2.00);
 		Produto produto2 = new Produto("eee", 111, 2.00);
-		farmacia.cadastraProduto(produto1, 2);
-		farmacia.cadastraProduto(produto2, 2);
+		farmacia.cadastraProduto(produto1);
+		farmacia.cadastraProduto(produto2);
 	}
 
 	@Test
 	public void verificaSeUmProdutoFoiRemovidoTest() {
-		Produto p = new Produto("abc", 555, 2.00);
-		farmacia.cadastraProduto(p , 2);
+		Produto p = new Produto("abc", 555, 2.00, 5);
+		farmacia.cadastraProduto(p);
 		farmacia.removerProdutoPeloCodigo(555);
 		assertNull(farmacia.getProduto(555));
 	}
@@ -72,7 +72,7 @@ public class FarmaciaTest {
 	@Test(expected = ProdutoInexistenteException.class)
 	public void removerProdutoInexistenteTest() {
 		Produto p = new Produto("abb", 567, 2.00);
-		farmacia.cadastraProduto(p , 2);
+		farmacia.cadastraProduto(p);
 		farmacia.removerProdutoPeloCodigo(999);
 		
 	}
@@ -80,38 +80,44 @@ public class FarmaciaTest {
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoNegativo() {
 		Produto p = new Produto("scs", 55, -4);
-		farmacia.cadastraProduto(p , 2);
+		farmacia.cadastraProduto(p);
 		
 	}
 
 	@Test(expected = PrecoInvalidoException.class)
 	public void cadastraProdutoComPrecoIgualAZero() {
-		farmacia.cadastraProduto("aaa", 51, 0, 2);
+		Produto p = new Produto("aaa", 51, 0, 2);
+		farmacia.cadastraProduto(p);
 		
 	}
 
 	@Test(expected = ProdutoJaExistenteException.class)
 	public void cadastrarProdutoComNomeJaExistente() {
-		farmacia.cadastraProduto("aaa", 123, 2.50, 2);
-		farmacia.cadastraProduto("aaa", 444, 3.20, 2);
+		Produto p1 = new Produto("aaa", 123, 2.50, 10);
+		Produto p2 = new Produto("aaa", 444, 3.20, 50);
+		farmacia.cadastraProduto(p1);
+		farmacia.cadastraProduto(p2);
 		
 	}
 
 	@Test(expected = ProdutoSemNomeException.class)
 	public void cadastrarProdutoSemNomeTest() {
-		farmacia.cadastraProduto("", 123, 2.30, 2);
+		Produto p = new Produto("", 123, 2.30, 2);
+		farmacia.cadastraProduto(p);
 		
 	}
 
 	@Test(expected = ProdutoSemNomeException.class)
 	public void cadastrarProdutoSemNomeTest2() {
-		farmacia.cadastraProduto(null, 123, 2.30, 2);
+		Produto p = new Produto(null, 123, 2.30, 7);
+		farmacia.cadastraProduto(p);
 		
 	}
 
 	@Test
 	public void pesquisarProdutoPeloNomeTest() {
-		farmacia.cadastraProduto("Dipirona", 1234, 5.00, 2);
+		Produto p = new Produto("Dipirona", 1234, 5.00, 4);
+		farmacia.cadastraProduto(p);
 		assertEquals("Dipirona", farmacia.pesquisarProdutoPeloNome("Dipirona")
 				.getNome());
 		assertEquals(1234, farmacia.pesquisarProdutoPeloNome("Dipirona")
@@ -122,78 +128,75 @@ public class FarmaciaTest {
 
 	@Test(expected = ProdutoInexistenteException.class)
 	public void pesquisarProdutoInexistentePeloNomeTest() {
-		farmacia.cadastraProduto("Paracetamol", 654, 4.20, 2);
+		Produto p = new Produto("Paracetamol", 654, 4.20);
+		farmacia.cadastraProduto(p);
 		farmacia.pesquisarProdutoPeloNome("Dorflex");
 		
 	}
 
 	@Test
 	public void pesquisarProdutoPeloCodigoTest() {
-		farmacia.cadastraProduto("Paracetamol", 654, 4.20, 2);
-		Produto p = farmacia.pesquisarProdutoPeloCodigo(654);
-		assertEquals("Paracetamol", p.getNome());
-		assertEquals(654, p.getCodProduto());
-		assertEquals(new Double(4.20), new Double(p.getPreco()));
+		Produto p1 = new Produto("Paracetamol", 654, 4.20, 100);
+		farmacia.cadastraProduto(p1);
+		Produto p2 = farmacia.getProduto(654);
+		assertEquals(p1, p2);
+		
 		//Trocar pelo equals de produto
 	}
 
-	@Test(expected = ProdutoInexistenteException.class)
+	
 	public void pesquisarProdutoInexistentePeloCodigoTest() {
-		farmacia.pesquisarProdutoPeloCodigo(998);
+		Produto p = new Produto("Paracetamol", 654, 4.20, 400);
+		farmacia.cadastraProduto(p);
+		assertNull(farmacia.getProduto(998));
 	}
 
-	@Test(expected = ProdutoInexistenteException.class)
+	
 	public void pesquisarProdutoInexistenteTest() {
-		farmacia.cadastraProduto("Anador", 145, 3.00, 3);
-		farmacia.pesquisarProdutoPeloCodigo(146);
+		Produto p = new Produto("Anador", 145, 3.00, 3);
+		farmacia.cadastraProduto(p);
+		assertNull(farmacia.getProduto(146));
 		
 	}
 
 	@Test
 	public void adicionarQuantidadeDeUmProdutoNoEstoqueTest() {
-		farmacia.cadastraProduto("Dipirona", 123, 1.20, 0);
+		Produto p = new Produto("Dipirona", 123, 1.20);
+		farmacia.cadastraProduto(p);
 		farmacia.adicionarProdutoEmEstoque(123, 10);
-		assertEquals(10, farmacia.pesquisarProdutoPeloCodigo(123)
+		assertEquals(10, farmacia.getProduto(123)
 				.getQuantidade());
 	}
 
-	
-//	@Test
-//	public void adicionarQuantidadeDeUmProdutoNoEstoqueTest234() {
-//		try {
-//			//faz algo que deve lancar exc
-//			
-//			fail("sgsasg");
-//			
-//		} catch  (Exception e) {
-//			//Continua
-//		}
-//	}
-	
-	
-	
 	@Test
 	public void verificaQuantidadeEmEstoqueTest() {
-		farmacia.cadastraProduto("Escova de dente - Oral-B", 5543, 5.00, 30);
-		farmacia.adicionarProdutoEmEstoque(5543, 20);
-		assertEquals(50, farmacia.pesquisarProdutoPeloCodigo(5543)
+		Produto p = new Produto("Escova de dente - Oral-B", 5543, 5.00, 30);
+		farmacia.cadastraProduto(p);
+		farmacia.adicionarProdutoEmEstoque(5543, 50);
+		assertEquals(80, farmacia.getProduto(5543)
 				.getQuantidade());
 	}
 
 	@Test
 	public void buscarProdutosPeloPrecoTest() {
-		farmacia.cadastraProduto("Anador", 123, 2.30, 0);
-		assertEquals(1, farmacia.buscarProtudosPeloPreco(2.30).size());
+		Produto p = new Produto("Anador", 123, 2.30);
+		farmacia.cadastraProduto(p);
+		assertEquals(1, farmacia.buscarProdutosPeloPreco(2.30).size());
 	}
 
 	@Test
 	public void buscarProdutosPeloPrecoTest2() {
-		farmacia.cadastraProduto("Anador", 111, 2.30, 0);
-		farmacia.cadastraProduto("Dipirona", 222, 2.30, 0);
-		farmacia.cadastraProduto("Benegrip", 333, 2.30, 0);
-		farmacia.cadastraProduto("Doril", 444, 2.30, 0);
+		Produto p1 = new Produto("Anador", 111, 2.30);
+		Produto p2 = new Produto("Dipirona", 222, 4.80);
+		Produto p3 = new Produto("Benegrip", 333, 5.10);
+		Produto p4 = new Produto("Doril", 444, 2.30);
+		farmacia.cadastraProduto(p1);
+		farmacia.cadastraProduto(p2);
+		farmacia.cadastraProduto(p3);
+		farmacia.cadastraProduto(p4);
 		farmacia.removerProdutoPeloCodigo(222);
-		assertEquals(3, farmacia.buscarProtudosPeloPreco(2.30).size());
+		farmacia.removerProdutoPeloCodigo(333);
+		assertEquals(2, farmacia.buscarProdutosPeloPreco(2.30).size());
 	}
 }
 

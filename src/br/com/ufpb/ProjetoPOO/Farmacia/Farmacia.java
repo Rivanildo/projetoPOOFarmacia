@@ -11,8 +11,8 @@ public class Farmacia {
 		produtos = new LinkedList<Produto>();
 	}
 
-	public void cadastraProduto(Produto p, int qtde) {
-		validarProduto(p.getNome(), p.getCodProduto(),p.getPreco(), qtde);
+	public void cadastraProduto(Produto p) {
+		validarProduto(p.getNome(), p.getCodProduto(),p.getPreco(),p.getQuantidade());
 		this.produtos.add(p);
 	}
 
@@ -95,7 +95,7 @@ public class Farmacia {
 		p.adicionarQuantidadeDeProdutoEmEstoque(quantidade);
 	}
 
-	public List<Produto> buscarProtudosPeloPreco(double preco) {
+	public List<Produto> buscarProdutosPeloPreco(double preco) {
 		List<Produto> listaProdutos = new LinkedList<Produto>();
 		for (Produto p : this.produtos) {
 			if (p.getPreco() == preco) {

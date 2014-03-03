@@ -61,7 +61,7 @@ public class GerenteDeProdutos {
 		return false;
 	}
 
-	public boolean isNomeCadastrado(String nome) {
+	private boolean isNomeCadastrado(String nome) {
 		for (Produto p : this.produtos) {
 			if (p.getNome() == nome) {
 				return true;

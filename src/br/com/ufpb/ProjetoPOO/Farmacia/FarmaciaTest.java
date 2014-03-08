@@ -1,9 +1,19 @@
 package br.com.ufpb.projetopoo.farmacia;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
-import br.com.ufpb.projetopoo.farmacia.excecoes.*;
+
+import br.com.ufpb.projetopoo.farmacia.excecoes.ClienteJaExistenteException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.PrecoInvalidoException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoInexistenteException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoJaExistenteException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoSemNomeException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.QuantidadeInvalidaException;
 
 
 public class FarmaciaTest {
@@ -319,6 +329,12 @@ public class FarmaciaTest {
 		assertEquals(2,lista.size());
 	}
 	
+	@Test
+	public void pesquisarClienteFisico(){
+		Cliente c1 = new ClienteFisico("Vanessa","123.345.567-90");
+		farmacia.cadastrarCliente(c1);
+		assertEquals(c1,farmacia.pesquisarCliente("123.345.567-90"));
+	}
 	
 	
 	

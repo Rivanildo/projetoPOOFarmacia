@@ -274,6 +274,14 @@ public class FarmaciaTest {
 		assertEquals(d, clientes.get(0));
 	}
 	
+	@Test(expected = ClienteJaExistenteException.class)
+	public void CadastraClienteFisicoComMesmoId(){
+		Cliente c = new ClienteFisico("Tayná","434.865.555-45");
+		farmacia.cadastrarCliente(c);
+		Cliente d = new ClienteFisico("Tayná","434.865.555-45");
+		farmacia.cadastrarCliente(d);
+	}
+	
 	
 	
 	

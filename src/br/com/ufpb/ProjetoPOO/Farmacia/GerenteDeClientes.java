@@ -3,6 +3,8 @@ package br.com.ufpb.projetopoo.farmacia;
 import java.util.LinkedList;
 import java.util.List;
 
+import br.com.ufpb.projetopoo.farmacia.excecoes.ClienteJaExistenteException;
+
 public class GerenteDeClientes {
 
 	private List <Cliente> clientes;
@@ -12,8 +14,20 @@ public class GerenteDeClientes {
 	}
 
 	public void cadastrarCliente(Cliente c) {
+		if(isCadastrado(c.getId())){
+			throw new ClienteJaExistenteException("Cliente já cadastrado");
+		}
 		clientes.add(c);
 		
+	}
+	
+	public boolean isCadastrado(String Id){
+		for(Cliente c: clientes){
+			if(c.getId().equals(Id)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Cliente pesquisarCliente(String id) {
@@ -23,7 +37,6 @@ public class GerenteDeClientes {
 			}
 		}
 		return null;
-		
 	}
 
 	public List<Cliente> listClientes() {

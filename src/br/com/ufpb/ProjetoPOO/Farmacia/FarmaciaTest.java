@@ -265,6 +265,16 @@ public class FarmaciaTest {
 		assertEquals(c, farmacia.pesquisarCliente("434.865.555-45"));
 	}
 	
+	@Test
+	public void cadastrarClienteJuridicoTest(){
+		Cliente d = new ClienteJuridico("Luana","28.314.612/6789.00");
+		farmacia.cadastrarCliente(d);
+		List<Cliente> clientes = farmacia.listClientes();
+		assertEquals(1,clientes.size());
+		assertEquals(d, clientes.get(0));
+	}
+	
+	
 	
 	
 	

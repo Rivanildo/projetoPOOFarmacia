@@ -282,6 +282,13 @@ public class FarmaciaTest {
 		farmacia.cadastrarCliente(d);
 	}
 	
+	@Test(expected = ClienteJaExistenteException.class)
+	public void CadastraClienteJuridicoComMesmoId(){
+		Cliente d = new ClienteJuridico("Luana","28.314.612/6789.00");
+		farmacia.cadastrarCliente(d);
+		Cliente e = new ClienteJuridico("Luana","28.314.612/6789.00");
+		farmacia.cadastrarCliente(e);
+	}
 	
 	
 	

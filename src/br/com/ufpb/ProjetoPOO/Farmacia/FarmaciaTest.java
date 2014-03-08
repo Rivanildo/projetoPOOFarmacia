@@ -208,11 +208,32 @@ public class FarmaciaTest {
 	}
 	
 	@Test
+	public void alterarNomeTest2(){
+		Produto p1 = new Produto("Narix",9581,12.00);
+		farmacia.cadastraProduto(p1);
+		p1.setNome("Vick");
+		assertEquals(p1.getNome(), farmacia.getProduto(9581).getNome());
+		p1.setNome("Valda");
+		assertEquals(p1.getNome(), farmacia.getProduto(9581).getNome());
+		
+	}
+	
+	@Test
 	public void alterarPrecoTest(){
 		Produto p1 = new Produto("Cataflan",7788,5.50);
 		farmacia.cadastraProduto(p1);
 		p1.setPreco(9.00);
 		assertEquals(new Double(p1.getPreco()),new Double(farmacia.getProduto(7788).getPreco()));
+	}
+	
+	@Test
+	public void alterarPrecoTest2(){
+		Produto p1 = new Produto("Vick",9318,8.30);
+		farmacia.cadastraProduto(p1);
+		p1.setPreco(9.00);
+		assertEquals(new Double(p1.getPreco()),new Double(farmacia.getProduto(9318).getPreco()));
+		p1.setPreco(9.99);
+		assertEquals(new Double(p1.getPreco()),new Double(farmacia.getProduto(9318).getPreco()));
 	}
 	
 	

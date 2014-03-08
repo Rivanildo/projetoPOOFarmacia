@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.ufpb.projetopoo.farmacia.excecoes.ClienteInexistenteException;
 import br.com.ufpb.projetopoo.farmacia.excecoes.ClienteJaExistenteException;
 import br.com.ufpb.projetopoo.farmacia.excecoes.PrecoInvalidoException;
 import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoInexistenteException;
@@ -343,7 +344,13 @@ public class FarmaciaTest {
 		assertEquals(e,farmacia.pesquisarCliente("28.314.612/6789.00"));
 	}
 	
-	
+	@Test(expected= ClienteInexistenteException.class)
+	public void pesquisarClienteNaoCadastrado(){
+		Cliente c1 = new ClienteFisico("Vanessa","123.345.567-90");
+		farmacia.cadastrarCliente(c1);
+		Cliente e = farmacia.pesquisarCliente("132.145.067-10");
+		
+	}
 	
 }
 

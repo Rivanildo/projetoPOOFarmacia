@@ -3,6 +3,7 @@ package br.com.ufpb.projetopoo.farmacia;
 import java.util.LinkedList;
 import java.util.List;
 
+import br.com.ufpb.projetopoo.farmacia.excecoes.ClienteInexistenteException;
 import br.com.ufpb.projetopoo.farmacia.excecoes.ClienteJaExistenteException;
 
 public class GerenteDeClientes {
@@ -36,7 +37,7 @@ public class GerenteDeClientes {
 				return c; 
 			}
 		}
-		return null;
+		throw new ClienteInexistenteException("Cliente Inexistente!");
 	}
 
 	public List<Cliente> listClientes() {

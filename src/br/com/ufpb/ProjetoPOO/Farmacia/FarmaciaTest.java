@@ -7,6 +7,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.ufpb.projetopoo.farmacia.excecoes.PrecoInvalidoException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoInexistenteException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoJaExistenteException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoSemNomeException;
+
 public class FarmaciaTest {
 	Farmacia farmacia;
 	
@@ -250,4 +255,3 @@ public class FarmaciaTest {
 	
 }
 
-//Fazer os métodos de edição de produto

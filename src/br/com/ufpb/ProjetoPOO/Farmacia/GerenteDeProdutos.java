@@ -3,6 +3,12 @@ package br.com.ufpb.projetopoo.farmacia;
 import java.util.LinkedList;
 import java.util.List;
 
+import br.com.ufpb.projetopoo.farmacia.excecoes.PrecoInvalidoException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoInexistenteException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoJaExistenteException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoSemNomeException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.QuantidadeInvalidaException;
+
 public class GerenteDeProdutos {
 	
 	List<Produto> produtos;

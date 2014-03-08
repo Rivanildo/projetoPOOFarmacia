@@ -10,4 +10,23 @@ public class GerenteDeClientes {
 	public GerenteDeClientes(){
 		clientes = new LinkedList<Cliente>();
 	}
+
+	public void cadastrarCliente(Cliente c) {
+		clientes.add(c);
+		
+	}
+
+	public Cliente pesquisarCliente(String id) {
+		for(Cliente c : this.clientes){
+			if(c.getId().equals(id)){
+				return c; 
+			}
+		}
+		return null;
+		
+	}
+
+	public List<Cliente> listClientes() {
+		return this.clientes;
+	}
 }

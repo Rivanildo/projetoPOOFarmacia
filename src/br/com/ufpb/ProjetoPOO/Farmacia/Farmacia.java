@@ -34,4 +34,18 @@ public class Farmacia {
 	public Produto getProduto(long codProduto) {
 		return this.gerenteProduto.getProduto(codProduto);
 	}
+
+	public void cadastrarCliente(Cliente c) {
+		this.gerenteCliente.cadastrarCliente(c);
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Cliente pesquisarCliente(String id) {
+		return this.gerenteCliente.pesquisarCliente(id);
+	}
+
+	public List<Cliente> listClientes() {
+		return this.gerenteCliente.listClientes();
+	}
 }

@@ -1,17 +1,10 @@
 package br.com.ufpb.projetopoo.farmacia;
-
 import static org.junit.Assert.*;
-
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
+import br.com.ufpb.projetopoo.farmacia.excecoes.*;
 
-import br.com.ufpb.projetopoo.farmacia.excecoes.PrecoInvalidoException;
-import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoInexistenteException;
-import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoJaExistenteException;
-import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoSemNomeException;
-import br.com.ufpb.projetopoo.farmacia.excecoes.QuantidadeInvalidaException;
 
 public class FarmaciaTest {
 	Farmacia farmacia;
@@ -35,7 +28,6 @@ public class FarmaciaTest {
 
 	@Test
 	public void cadastraUmProduto() {
-		//Usar DTO - Data Transfer Object
 		Produto produto1 = new Produto("aaa", 999, 2.00, 2);
 		farmacia.cadastraProduto(produto1);
 		List<Produto> produtos = this.farmacia.listProdutos();
@@ -182,6 +174,12 @@ public class FarmaciaTest {
 		assertEquals(80, farmacia.getProduto(5543)
 				.getQuantidade());
 	}
+	
+	@Test(expected = QuantidadeInvalidaException.class)
+	public void cadastraProdutoQuantidadeNegativaTest(){
+		Produto p1 = new Produto("Dipirona",334,1.00,-3);
+		farmacia.cadastraProduto(p1);
+	}
 
 	@Test
 	public void buscarProdutosPeloPrecoTest() {
@@ -251,11 +249,23 @@ public class FarmaciaTest {
 		assertEquals(p1,farmacia.getProduto(6677));
 	}
 	
-	@Test(expected = QuantidadeInvalidaException.class)
-	public void cadastraProdutoQuantidadeNegativaTest(){
-		Produto p1 = new Produto("Dipirona",334,1.00,-3);
-		farmacia.cadastraProduto(p1);
+	@Test
+	public void cadastrarClienteFisicoTest(){
+		Cliente c = new ClienteFisico("Rivanildo","535.764.974-15");
+		farmacia.cadastrarCliente(c);
+		List<Cliente> clientes = farmacia.listClientes();
+		assertEquals(1,clientes.size());		
+		assertEquals(c, clientes.get(0));
 	}
+	
+	@Test
+	public void	pesquisaClienteTest(){
+		Cliente c = new ClienteFisico("Tayná","434.865.555-45");
+		farmacia.cadastrarCliente(c);
+		assertEquals(c, farmacia.pesquisarCliente("434.865.555-45"));
+	}
+	
+	
 	
 	
 	

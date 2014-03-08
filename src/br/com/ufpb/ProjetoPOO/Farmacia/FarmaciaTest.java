@@ -236,6 +236,15 @@ public class FarmaciaTest {
 		assertEquals(new Double(p1.getPreco()),new Double(farmacia.getProduto(9318).getPreco()));
 	}
 	
+	@Test
+	public void alterarProdutoTest(){
+		Produto p1 = new Produto("Kinker ovo",6677,12.00);
+		p1.setNome("Ovo surpresa");
+		p1.setPreco(19.99);
+		farmacia.cadastraProduto(p1);
+		assertEquals(p1,farmacia.getProduto(6677));
+	}
+	
 	
 	
 	

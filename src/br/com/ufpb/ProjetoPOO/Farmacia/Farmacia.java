@@ -6,8 +6,11 @@ import java.util.List;
 public class Farmacia {
 	private GerenteDeProdutos gerenteProduto;
 	
+	private GerenteDeClientes gerenteCliente;
+	
 	public Farmacia() {
 		gerenteProduto = new GerenteDeProdutos();
+		gerenteCliente = new GerenteDeClientes();
 	}
 
 	public void cadastraProduto(Produto p){

@@ -336,6 +336,12 @@ public class FarmaciaTest {
 		assertEquals(c1,farmacia.pesquisarCliente("123.345.567-90"));
 	}
 	
+	@Test
+	public void pesquisarClienteJuridico(){
+		Cliente e = new ClienteJuridico("Rita","28.314.612/6789.00");
+		farmacia.cadastrarCliente(e);
+		assertEquals(e,farmacia.pesquisarCliente("28.314.612/6789.00"));
+	}
 	
 	
 	

@@ -207,6 +207,16 @@ public class FarmaciaTest {
 		assertEquals(p1.getNome(), farmacia.getProduto(1234).getNome());
 	}
 	
+	@Test
+	public void alterarPrecoTest(){
+		Produto p1 = new Produto("Cataflan",7788,5.50);
+		farmacia.cadastraProduto(p1);
+		p1.setPreco(9.00);
+		assertEquals(new Double(p1.getPreco()),new Double(farmacia.getProduto(7788).getPreco()));
+	}
+	
+	
+	
 	
 }
 

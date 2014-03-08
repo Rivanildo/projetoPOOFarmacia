@@ -331,21 +331,21 @@ public class FarmaciaTest {
 	}
 	
 	@Test
-	public void pesquisarClienteFisico(){
+	public void pesquisarClienteFisicoTest(){
 		Cliente c1 = new ClienteFisico("Vanessa","123.345.567-90");
 		farmacia.cadastrarCliente(c1);
 		assertEquals(c1,farmacia.pesquisarCliente("123.345.567-90"));
 	}
 	
 	@Test
-	public void pesquisarClienteJuridico(){
+	public void pesquisarClienteJuridicoTest(){
 		Cliente e = new ClienteJuridico("Rita","28.314.612/6789.00");
 		farmacia.cadastrarCliente(e);
 		assertEquals(e,farmacia.pesquisarCliente("28.314.612/6789.00"));
 	}
 	
 	@Test(expected= ClienteInexistenteException.class)
-	public void pesquisarClienteNaoCadastrado(){
+	public void pesquisarClienteNaoCadastradoTest(){
 		Cliente c1 = new ClienteFisico("Vanessa","123.345.567-90");
 		farmacia.cadastrarCliente(c1);
 		Cliente e = farmacia.pesquisarCliente("132.145.067-10");

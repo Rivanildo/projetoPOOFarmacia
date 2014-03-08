@@ -11,6 +11,7 @@ import br.com.ufpb.projetopoo.farmacia.excecoes.PrecoInvalidoException;
 import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoInexistenteException;
 import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoJaExistenteException;
 import br.com.ufpb.projetopoo.farmacia.excecoes.ProdutoSemNomeException;
+import br.com.ufpb.projetopoo.farmacia.excecoes.QuantidadeInvalidaException;
 
 public class FarmaciaTest {
 	Farmacia farmacia;
@@ -250,6 +251,11 @@ public class FarmaciaTest {
 		assertEquals(p1,farmacia.getProduto(6677));
 	}
 	
+	@Test(expected = QuantidadeInvalidaException.class)
+	public void cadastraProdutoQuantidadeNegativaTest(){
+		Produto p1 = new Produto("Dipirona",334,1.00,-3);
+		farmacia.cadastraProduto(p1);
+	}
 	
 	
 	

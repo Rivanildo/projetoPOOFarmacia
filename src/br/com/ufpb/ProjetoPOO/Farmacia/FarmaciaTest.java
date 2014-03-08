@@ -198,6 +198,16 @@ public class FarmaciaTest {
 		farmacia.removerProdutoPeloCodigo(333);
 		assertEquals(2, farmacia.buscarProdutosPeloPreco(2.30).size());
 	}
+	
+	@Test
+	public void alterarNomeTest(){
+		Produto p1 = new Produto("Anador",1234,3.00);
+		farmacia.cadastraProduto(p1);
+		p1.setNome("Dorflex");
+		assertEquals(p1.getNome(), farmacia.getProduto(1234).getNome());
+	}
+	
+	
 }
 
 //Fazer os métodos de edição de produto

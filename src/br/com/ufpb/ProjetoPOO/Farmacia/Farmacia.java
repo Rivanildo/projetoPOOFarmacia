@@ -6,7 +6,6 @@ import java.util.List;
 public class Farmacia {
 	private GerenteDeProdutos gerenteProduto;
 	
-	//Criar a classe gerente de produto e jogar tudo isso aqui dentro
 	public Farmacia() {
 		gerenteProduto = new GerenteDeProdutos();
 	}

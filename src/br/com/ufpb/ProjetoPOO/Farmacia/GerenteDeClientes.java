@@ -42,4 +42,13 @@ public class GerenteDeClientes {
 	public List<Cliente> listClientes() {
 		return this.clientes;
 	}
+
+	public void removerCliente(String id) {
+		
+		if(!this.isCadastrado(id)){
+			throw new RuntimeException("Cliente inexistente");
+		}
+		this.clientes.remove(this.pesquisarCliente(id));
+		
+	}
 }

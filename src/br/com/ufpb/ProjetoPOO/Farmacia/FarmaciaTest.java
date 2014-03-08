@@ -275,7 +275,7 @@ public class FarmaciaTest {
 	}
 	
 	@Test(expected = ClienteJaExistenteException.class)
-	public void CadastraClienteFisicoComMesmoId(){
+	public void cadastraClienteFisicoComMesmoIdTest(){
 		Cliente c = new ClienteFisico("Tayná","434.865.555-45");
 		farmacia.cadastrarCliente(c);
 		Cliente d = new ClienteFisico("Tayná","434.865.555-45");
@@ -283,11 +283,40 @@ public class FarmaciaTest {
 	}
 	
 	@Test(expected = ClienteJaExistenteException.class)
-	public void CadastraClienteJuridicoComMesmoId(){
+	public void cadastraClienteJuridicoComMesmoIdTest(){
 		Cliente d = new ClienteJuridico("Luana","28.314.612/6789.00");
 		farmacia.cadastrarCliente(d);
 		Cliente e = new ClienteJuridico("Luana","28.314.612/6789.00");
 		farmacia.cadastrarCliente(e);
+	}
+	
+	@Test
+	public void removeClienteTest(){
+		Cliente c = new ClienteFisico("Vanessa","123.345.567-90");
+		farmacia.cadastrarCliente(c);
+		farmacia.removerCliente(c.getId());
+		List<Cliente> lista = farmacia.listClientes();
+		assertEquals(0, lista.size());
+	}
+	
+	@Test(expected = Exception.class)
+	public void removeClienteInexistenteTest(){
+		Cliente c = new ClienteFisico("Vanessa","123.345.567-90");
+		farmacia.cadastrarCliente(c);
+		farmacia.removerCliente("234.977.553-56");
+	}
+	
+	@Test
+	public void removeClienteTest2(){
+		Cliente c1 = new ClienteFisico("Vanessa","123.345.567-90");
+		Cliente c2= new ClienteFisico("Rhaleff","321.856.097-80");
+		Cliente c3 = new ClienteJuridico("Elze","132.145.067-10");
+		farmacia.cadastrarCliente(c1);
+		farmacia.cadastrarCliente(c2);
+		farmacia.cadastrarCliente(c3);
+		farmacia.removerCliente(c2.getId());
+		List<Cliente> lista = farmacia.listClientes();
+		assertEquals(2,lista.size());
 	}
 	
 	

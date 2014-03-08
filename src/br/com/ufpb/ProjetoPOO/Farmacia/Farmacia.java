@@ -48,4 +48,9 @@ public class Farmacia {
 	public List<Cliente> listClientes() {
 		return this.gerenteCliente.listClientes();
 	}
+
+	public void removerCliente(String id) {
+		this.gerenteCliente.removerCliente(id);
+		
+	}
 }

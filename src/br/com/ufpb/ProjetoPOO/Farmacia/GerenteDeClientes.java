@@ -37,7 +37,7 @@ public class GerenteDeClientes {
 				return c; 
 			}
 		}
-		throw new ClienteInexistenteException("Cliente Inexistente!");
+		return null;
 	}
 
 	public List<Cliente> listClientes() {

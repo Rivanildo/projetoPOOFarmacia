@@ -53,4 +53,9 @@ public class Farmacia {
 		this.gerenteCliente.removerCliente(id);
 		
 	}
+
+	public void atualizarProduto(Produto p1) {
+		this.gerenteProduto.atualizarProduto(p1);
+		
+	}
 }

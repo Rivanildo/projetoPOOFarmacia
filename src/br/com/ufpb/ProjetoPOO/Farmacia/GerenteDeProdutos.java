@@ -11,7 +11,7 @@ import br.com.ufpb.projetopoo.farmacia.excecoes.QuantidadeInvalidaException;
 
 public class GerenteDeProdutos {
 	
-	List<Produto> produtos;
+	private List<Produto> produtos;
 	
 	public GerenteDeProdutos(){
 		produtos = new LinkedList<Produto>();
@@ -93,7 +93,7 @@ public class GerenteDeProdutos {
 				return p;
 			}
 		}
-		throw new ProdutoInexistenteException("Produto inexistente");
+		return null;
 	}
 
 	public void adicionarProdutoEmEstoque(int codProduto, int quantidade) {
@@ -126,6 +126,15 @@ public class GerenteDeProdutos {
 			}
 		}
 		return null;
+	}
+
+	public void atualizarProduto(Produto p1) {
+		for(Produto p : produtos){
+			if(p.equals(p1)){
+				p = p1;
+			}
+		}
+		
 	}
 
 }

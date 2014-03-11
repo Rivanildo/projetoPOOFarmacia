@@ -338,4 +338,11 @@ public class FarmaciaTest {
 		farmacia.venderProduto(123,2);
 		assertEquals(3,p.getQuantidade());
 	}
+	
+	@Test (expected = Exception.class)
+	public void venderProdutoQuantidadeMaiorTest(){
+		Produto p = new Produto("Anador", 444, 1.00, 10);
+		farmacia.cadastraProduto(p);
+		farmacia.venderProduto(444,11);
+	}
 }

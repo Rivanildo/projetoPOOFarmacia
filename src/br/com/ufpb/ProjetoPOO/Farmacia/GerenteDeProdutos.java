@@ -133,6 +133,5 @@ public class GerenteDeProdutos {
 				p = p1;
 			}
 		}
-		
 	}	
 }

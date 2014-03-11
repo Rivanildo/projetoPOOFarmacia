@@ -29,6 +29,29 @@ public class Produto {
 	public String getNome() {
 		return this.nome;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (codProduto != other.codProduto)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (Double.doubleToLongBits(preco) != Double
+				.doubleToLongBits(other.preco))
+			return false;
+		if (quantidade != other.quantidade)
+			return false;
+		return true;
+	}
 
 	public void setNome(String nome) {
 		this.nome = nome;

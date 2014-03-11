@@ -360,4 +360,14 @@ public class FarmaciaTest {
 		farmacia.venderProduto(101,0);
 	}
 	
+	@Test
+	public void venderItens(){
+		Produto p = new Produto("Doril", 101, 1.50, 3);
+		farmacia.cadastraProduto(p);
+		ItemDeVenda i = new ItemDeVenda(p,2);
+		Venda v = new Venda();
+		v.adicionarItem(i);
+		farmacia.vender(v);
+	}
+	
 }

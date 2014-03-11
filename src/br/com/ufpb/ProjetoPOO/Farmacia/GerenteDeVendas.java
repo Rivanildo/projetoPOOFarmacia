@@ -10,7 +10,6 @@ public class GerenteDeVendas {
 		this.gerenteProduto = gerente;
 	}
 	
-	
 	public void venderProduto(long codProduto, int quant) throws QuantidadeInvalidaException{
 		Produto p = this.gerenteProduto.getProduto(codProduto);
 		if(quant > p.getQuantidade() || quant <= 0){
@@ -19,4 +18,11 @@ public class GerenteDeVendas {
 		p.setQuantidade(p.getQuantidade()-quant);
 	}
 
+	public void vender(Venda v) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
 }

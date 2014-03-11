@@ -65,5 +65,9 @@ public class Farmacia {
 		this.gerenteVendas.venderProduto(codProduto, quantidade);
 	}
 	
+	public void vender(Venda v){
+		this.gerenteVendas.vender(v);
+	}
+	
 	
 }

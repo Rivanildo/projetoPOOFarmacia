@@ -347,9 +347,17 @@ public class FarmaciaTest {
 	}
 	
 	@Test (expected = Exception.class)
-	public void venderProdutoQuantidadeMenorTest(){
+	public void venderProdutoQuantidadeInvalidaTest(){
 		Produto p = new Produto("Nimesulida", 222, 3.00, 5);
 		farmacia.cadastraProduto(p);
 		farmacia.venderProduto(222,-1);
 	}
+	
+	@Test (expected = Exception.class)
+	public void venderProdutoQuantidadeZero(){
+		Produto p = new Produto("Doril", 101, 1.50, 3);
+		farmacia.cadastraProduto(p);
+		farmacia.venderProduto(101,0);
+	}
+	
 }

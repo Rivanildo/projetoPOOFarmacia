@@ -8,10 +8,13 @@ public class Farmacia {
 	
 	private GerenteDeClientes gerenteCliente;
 	
+	private GerenteDeVendas gerenteVendas;
+	
 	
 	public Farmacia() {
 		gerenteProduto = new GerenteDeProdutos();
 		gerenteCliente = new GerenteDeClientes();
+		gerenteVendas = new GerenteDeVendas(gerenteProduto);
 	}
 
 	public void cadastraProduto(Produto p){
@@ -59,7 +62,7 @@ public class Farmacia {
 	}
 	
 	public void venderProduto(long codProduto, int quantidade) {
-		this.gerenteProduto.venderProduto(codProduto, quantidade);
+		this.gerenteVendas.venderProduto(codProduto, quantidade);
 	}
 	
 	

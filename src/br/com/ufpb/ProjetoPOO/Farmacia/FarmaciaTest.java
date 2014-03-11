@@ -323,7 +323,7 @@ public class FarmaciaTest {
 		assertEquals(e,farmacia.pesquisarCliente("28.314.612/6789.00"));
 	}
 	
-	@Test//(expected= ClienteInexistenteException.class)
+	@Test
 	public void pesquisarClienteNaoCadastradoTest(){
 		Cliente c1 = new ClienteFisico("Vanessa","123.345.567-90");
 		farmacia.cadastrarCliente(c1);

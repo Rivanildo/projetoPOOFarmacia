@@ -134,18 +134,5 @@ public class GerenteDeProdutos {
 			}
 		}
 		
-	}
-	
-	
-	
-	
-	public void venderProduto(long codProduto, int quant){
-		Produto p = this.getProduto(codProduto);
-		p.setQuantidade(p.getQuantidade()-quant);
-	}
-	
-	
-	
-	
-
+	}	
 }

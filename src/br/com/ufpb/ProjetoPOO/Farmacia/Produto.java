@@ -72,6 +72,10 @@ public class Produto {
 	public int getQuantidade() {
 		return this.quantidade;
 	}
+	
+	public void setQuantidade(int quant){
+		this.quantidade = quant;
+	}
 
 	public void adicionarQuantidadeDeProdutoEmEstoque(int quantidade) {
 		this.quantidade += quantidade;

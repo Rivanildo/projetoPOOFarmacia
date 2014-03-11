@@ -8,6 +8,7 @@ public class Farmacia {
 	
 	private GerenteDeClientes gerenteCliente;
 	
+	
 	public Farmacia() {
 		gerenteProduto = new GerenteDeProdutos();
 		gerenteCliente = new GerenteDeClientes();
@@ -50,12 +51,16 @@ public class Farmacia {
 	}
 
 	public void removerCliente(String id) {
-		this.gerenteCliente.removerCliente(id);
-		
+		this.gerenteCliente.removerCliente(id);	
 	}
 
 	public void atualizarProduto(Produto p1) {
-		this.gerenteProduto.atualizarProduto(p1);
-		
+		this.gerenteProduto.atualizarProduto(p1);	
 	}
+	
+	public void venderProduto(long codProduto, int quantidade) {
+		this.gerenteProduto.venderProduto(codProduto, quantidade);
+	}
+	
+	
 }

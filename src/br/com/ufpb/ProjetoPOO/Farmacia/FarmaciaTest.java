@@ -1,8 +1,11 @@
 package br.com.ufpb.projetopoo.farmacia;
 import static org.junit.Assert.*;
+
 import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import br.com.ufpb.projetopoo.farmacia.excecoes.*;
 
 public class FarmaciaTest {
@@ -326,5 +329,13 @@ public class FarmaciaTest {
 		farmacia.cadastrarCliente(c1);
 		Cliente e = farmacia.pesquisarCliente("132.145.067-10");
 		assertNull(e);
+	}
+	
+	@Test
+	public void venderProdutoTest(){
+		Produto p = new Produto("Dipirona", 123, 2.00, 5);
+		farmacia.cadastraProduto(p);
+		farmacia.venderProduto(123,2);
+		assertEquals(3,p.getQuantidade());
 	}
 }

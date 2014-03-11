@@ -22,8 +22,7 @@ public class GerenteDeProdutos {
 		this.produtos.add(p);
 	}
 
-	private void validarProduto(String nome, long codProduto, double preco,
-			int qtde) {
+	private void validarProduto(String nome, long codProduto, double preco, int qtde) {
 		validarNome(nome);
 		validarCodigo(codProduto);
 		validarPreco(preco);
@@ -136,5 +135,17 @@ public class GerenteDeProdutos {
 		}
 		
 	}
+	
+	
+	
+	
+	public void venderProduto(long codProduto, int quant){
+		Produto p = this.getProduto(codProduto);
+		p.setQuantidade(p.getQuantidade()-quant);
+	}
+	
+	
+	
+	
 
 }

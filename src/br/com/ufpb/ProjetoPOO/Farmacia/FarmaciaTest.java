@@ -347,21 +347,21 @@ public class FarmaciaTest {
 	}
 	
 	@Test (expected = Exception.class)
-	public void venderProdutoQuantidadeInvalidaTest(){
+	public void venderProdutoQuantidadeInvalidaTest() {
 		Produto p = new Produto("Nimesulida", 222, 3.00, 5);
 		farmacia.cadastraProduto(p);
 		farmacia.venderProduto(222,-1);
 	}
 	
 	@Test (expected = Exception.class)
-	public void venderProdutoQuantidadeZeroTest(){
+	public void venderProdutoQuantidadeZeroTest() {
 		Produto p = new Produto("Doril", 101, 1.50, 3);
 		farmacia.cadastraProduto(p);
 		farmacia.venderProduto(101,0);
 	}
 	
 	@Test
-	public void venderItensTest(){
+	public void venderItensTest() {
 		Produto p = new Produto("Doril", 101, 1.50, 3);
 		farmacia.cadastraProduto(p);
 		ItemDeVenda i = new ItemDeVenda(p,2);
@@ -371,11 +371,14 @@ public class FarmaciaTest {
 	}
 	
 	@Test (expected = Exception.class)
-	public void venderProdutoInexistenteTest(){
+	public void venderProdutoInexistenteTest() {
 		farmacia.venderProduto(123, 2);
 	}
 	
-	
-	
-	
+	@Test
+	public void verificarValorDoProduto(){
+		Produto p = new Produto("Doril", 101, 1.50, 3);
+		farmacia.cadastraProduto(p);
+		assertEquals(new Double (1.50),new Double(farmacia.verificarValorDoProduto(101)));
+	}
 }

@@ -68,6 +68,10 @@ public class Farmacia {
 	public void vender(Venda v){
 		this.gerenteVendas.vender(v);
 	}
+
+	public double verificarValorDoProduto(long codProduto) {
+		return this.gerenteProduto.verificarValorDoProduto(codProduto);
+	}
 	
 	
 }

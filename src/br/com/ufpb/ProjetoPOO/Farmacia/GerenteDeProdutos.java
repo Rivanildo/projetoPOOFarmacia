@@ -128,10 +128,19 @@ public class GerenteDeProdutos {
 	}
 
 	public void atualizarProduto(Produto p1) {
-		for(Produto p : produtos){
+		for(Produto p : this.produtos){
 			if(p.equals(p1)){
 				p = p1;
 			}
 		}
-	}	
+	}
+
+	public double verificarValorDoProduto(long codProduto) {
+		Produto p = this.getProduto(codProduto);
+		double preco = 0.0;
+		if (p != null){
+			preco = p.getPreco();
+		}
+		return preco;
+	}
 }

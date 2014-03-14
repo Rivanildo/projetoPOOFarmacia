@@ -354,14 +354,14 @@ public class FarmaciaTest {
 	}
 	
 	@Test (expected = Exception.class)
-	public void venderProdutoQuantidadeZero(){
+	public void venderProdutoQuantidadeZeroTest(){
 		Produto p = new Produto("Doril", 101, 1.50, 3);
 		farmacia.cadastraProduto(p);
 		farmacia.venderProduto(101,0);
 	}
 	
 	@Test
-	public void venderItens(){
+	public void venderItensTest(){
 		Produto p = new Produto("Doril", 101, 1.50, 3);
 		farmacia.cadastraProduto(p);
 		ItemDeVenda i = new ItemDeVenda(p,2);
@@ -369,5 +369,13 @@ public class FarmaciaTest {
 		v.adicionarItem(i);
 		farmacia.vender(v);
 	}
+	
+	@Test (expected = Exception.class)
+	public void venderProdutoInexistenteTest(){
+		farmacia.venderProduto(123, 2);
+	}
+	
+	
+	
 	
 }

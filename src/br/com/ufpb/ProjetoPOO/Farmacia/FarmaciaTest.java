@@ -382,13 +382,10 @@ public class FarmaciaTest {
 		assertEquals(new Double (1.50),new Double(farmacia.verificarValorDoProduto(101)));
 	}
 
-	@Test
+	@Test (expected = Exception.class)
 	public void verificarValorDoProdutoInexistenteTest(){
-		assertEquals(new Double(0.0), new Double(farmacia.verificarValorDoProduto(999)));
+		farmacia.verificarValorDoProduto(999);
 	}
-	
-	
-	
 	
 	@Test
 	public void alterarQuantidadeTest(){
@@ -396,5 +393,12 @@ public class FarmaciaTest {
 		farmacia.cadastraProduto(p);
 		farmacia.alterarQuantidade(111,20);
 		assertEquals(20,p.getQuantidade());
+	}
+	
+	@Test (expected = Exception.class)
+	public void alterarQuantidadeInvalidaTest(){
+		Produto p = new Produto("Dipirona", 111, 1.20, 50);
+		farmacia.cadastraProduto(p);
+		farmacia.alterarQuantidade(111,-1);
 	}
 }

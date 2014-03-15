@@ -143,4 +143,11 @@ public class GerenteDeProdutos {
 		}
 		return preco;
 	}
+
+	public void alterarQuantidade(long codProduto, int quantidade) {
+		Produto p = this.getProduto(codProduto);
+		if (p != null){
+			p.setQuantidade(quantidade);
+		}
+	}
 }

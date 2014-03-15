@@ -376,9 +376,17 @@ public class FarmaciaTest {
 	}
 	
 	@Test
-	public void verificarValorDoProduto(){
+	public void verificarValorDoProdutoTest(){
 		Produto p = new Produto("Doril", 101, 1.50, 3);
 		farmacia.cadastraProduto(p);
 		assertEquals(new Double (1.50),new Double(farmacia.verificarValorDoProduto(101)));
+	}
+	
+	@Test
+	public void alterarQuantidadeTest(){
+		Produto p = new Produto("Dipirona", 111, 1.20, 50);
+		farmacia.cadastraProduto(p);
+		farmacia.alterarQuantidade(111,20);
+		assertEquals(20,p.getQuantidade());
 	}
 }

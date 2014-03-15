@@ -72,6 +72,11 @@ public class Farmacia {
 	public double verificarValorDoProduto(long codProduto) {
 		return this.gerenteProduto.verificarValorDoProduto(codProduto);
 	}
+
+	public void alterarQuantidade(long codProduto, int quantidade) {
+		this.gerenteProduto.alterarQuantidade(codProduto, quantidade);
+		
+	}
 	
 	
 }

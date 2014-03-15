@@ -401,4 +401,9 @@ public class FarmaciaTest {
 		farmacia.cadastraProduto(p);
 		farmacia.alterarQuantidade(111,-1);
 	}
+	
+	@Test (expected = Exception.class)
+	public void alterarQuantidadeDeProdutoInexistenteTest(){
+		farmacia.alterarQuantidade(111,5);
+	}
 }

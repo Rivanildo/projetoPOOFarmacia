@@ -381,6 +381,14 @@ public class FarmaciaTest {
 		farmacia.cadastraProduto(p);
 		assertEquals(new Double (1.50),new Double(farmacia.verificarValorDoProduto(101)));
 	}
+
+	@Test
+	public void verificarValorDoProdutoInexistenteTest(){
+		assertEquals(new Double(0.0), new Double(farmacia.verificarValorDoProduto(999)));
+	}
+	
+	
+	
 	
 	@Test
 	public void alterarQuantidadeTest(){

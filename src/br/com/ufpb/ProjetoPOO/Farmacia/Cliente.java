@@ -7,7 +7,6 @@ public abstract class Cliente{
 	public Cliente(String nome,String id) {
 		this.nome = nome;
 		this.id = id;
-		// TODO Auto-generated constructor stub
 	}
 
 	public abstract String toString();

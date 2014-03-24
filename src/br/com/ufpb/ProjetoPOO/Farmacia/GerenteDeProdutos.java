@@ -128,9 +128,13 @@ public class GerenteDeProdutos {
 	}
 
 	public void atualizarProduto(Produto p1) {
+			
 		for(Produto p : this.produtos){
-			if(p.equals(p1)){
-				p = p1;
+			
+			if(p.getCodProduto() == p1.getCodProduto()){
+				p.setNome(p1.getNome());
+				p.setPreco(p1.getPreco());
+				p.setQuantidade(p1.getQuantidade());
 			}
 		}
 	}

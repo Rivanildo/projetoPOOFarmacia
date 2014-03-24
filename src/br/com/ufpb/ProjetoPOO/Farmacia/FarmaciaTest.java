@@ -182,8 +182,6 @@ public class FarmaciaTest {
 		farmacia.cadastraProduto(p2);
 		farmacia.cadastraProduto(p3);
 		farmacia.cadastraProduto(p4);
-		farmacia.removerProdutoPeloCodigo(222);
-		farmacia.removerProdutoPeloCodigo(333);
 		assertEquals(2, farmacia.buscarProdutosPeloPreco(2.30).size());
 	}
 	
@@ -375,24 +373,9 @@ public class FarmaciaTest {
 		farmacia.venderProduto(123, 2);
 	}
 	
-	@Test
-	public void verificarValorDoProdutoTest(){
-		Produto p = new Produto("Doril", 101, 1.50, 3);
-		farmacia.cadastraProduto(p);
-		assertEquals(new Double (1.50),new Double(farmacia.verificarValorDoProduto(101)));
-	}
-
 	@Test (expected = Exception.class)
 	public void verificarValorDoProdutoInexistenteTest(){
 		farmacia.verificarValorDoProduto(999);
-	}
-	
-	@Test
-	public void alterarQuantidadeTest(){
-		Produto p = new Produto("Dipirona", 111, 1.20, 50);
-		farmacia.cadastraProduto(p);
-		farmacia.alterarQuantidade(111,20);
-		assertEquals(20,p.getQuantidade());
 	}
 	
 	@Test (expected = Exception.class)

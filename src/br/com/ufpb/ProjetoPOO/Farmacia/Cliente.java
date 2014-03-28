@@ -1,6 +1,6 @@
 package br.com.ufpb.projetopoo.farmacia;
 
-public abstract class Cliente{
+public class Cliente{
 
 	private String nome;
 	private String id;
@@ -9,7 +9,9 @@ public abstract class Cliente{
 		this.id = id;
 	}
 
-	public abstract String toString();
+	public String toString(){
+		return "Nome - "+this.nome+" ID - "+this.id;
+	}
 
 	public String getNome() {
 		return this.nome;

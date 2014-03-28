@@ -17,11 +17,6 @@ public class FarmaciaTest {
 	}
 	
 	@Test
-	public void verificaSeAFarmaciaFoiCriada() {
-		assertNotNull(this.farmacia);
-	}
-	
-	@Test
 	public void verificaSeEstaVazia() {
 		assertEquals(0, this.farmacia.listProdutos().size());
 	}
@@ -238,8 +233,8 @@ public class FarmaciaTest {
 	}
 	
 	@Test
-	public void cadastrarClienteFisicoTest(){
-		Cliente c = new ClienteFisico("Rivanildo","535.764.974-15");
+	public void cadastrarCliente(){
+		Cliente c = new Cliente("Rivanildo","535.764.974-15");
 		farmacia.cadastrarCliente(c);
 		List<Cliente> clientes = farmacia.listClientes();
 		assertEquals(1,clientes.size());		
@@ -248,39 +243,22 @@ public class FarmaciaTest {
 	
 	@Test
 	public void	pesquisaClienteTest(){
-		Cliente c = new ClienteFisico("Tayná","434.865.555-45");
+		Cliente c = new Cliente("Tayná","434.865.555-45");
 		farmacia.cadastrarCliente(c);
 		assertEquals(c, farmacia.pesquisarCliente("434.865.555-45"));
 	}
 	
-	@Test
-	public void cadastrarClienteJuridicoTest(){
-		Cliente d = new ClienteJuridico("Luana","28.314.612/6789.00");
-		farmacia.cadastrarCliente(d);
-		List<Cliente> clientes = farmacia.listClientes();
-		assertEquals(1,clientes.size());
-		assertEquals(d, clientes.get(0));
-	}
-	
 	@Test(expected = ClienteJaExistenteException.class)
-	public void cadastraClienteFisicoComMesmoIdTest(){
-		Cliente c = new ClienteFisico("Tayná","434.865.555-45");
+	public void cadastraClienteComMesmoIdTest(){
+		Cliente c = new Cliente("Tayná","434.865.555-45");
 		farmacia.cadastrarCliente(c);
-		Cliente d = new ClienteFisico("Tayná","434.865.555-45");
+		Cliente d = new Cliente("Tayná","434.865.555-45");
 		farmacia.cadastrarCliente(d);
-	}
-	
-	@Test(expected = ClienteJaExistenteException.class)
-	public void cadastraClienteJuridicoComMesmoIdTest(){
-		Cliente d = new ClienteJuridico("Luana","28.314.612/6789.00");
-		farmacia.cadastrarCliente(d);
-		Cliente e = new ClienteJuridico("Luana","28.314.612/6789.00");
-		farmacia.cadastrarCliente(e);
 	}
 	
 	@Test
 	public void removeClienteTest(){
-		Cliente c = new ClienteFisico("Vanessa","123.345.567-90");
+		Cliente c = new Cliente("Vanessa","123.345.567-90");
 		farmacia.cadastrarCliente(c);
 		farmacia.removerCliente(c.getId());
 		List<Cliente> lista = farmacia.listClientes();
@@ -289,16 +267,16 @@ public class FarmaciaTest {
 	
 	@Test(expected = Exception.class)
 	public void removeClienteInexistenteTest(){
-		Cliente c = new ClienteFisico("Vanessa","123.345.567-90");
+		Cliente c = new Cliente("Vanessa","123.345.567-90");
 		farmacia.cadastrarCliente(c);
 		farmacia.removerCliente("234.977.553-56");
 	}
 	
 	@Test
 	public void removeClienteTest2(){
-		Cliente c1 = new ClienteFisico("Vanessa","123.345.567-90");
-		Cliente c2= new ClienteFisico("Rhaleff","321.856.097-80");
-		Cliente c3 = new ClienteJuridico("Elze","132.145.067-10");
+		Cliente c1 = new Cliente("Vanessa","123.345.567-90");
+		Cliente c2= new Cliente("Rhaleff","321.856.097-80");
+		Cliente c3 = new Cliente("Elze","132.145.067-10");
 		farmacia.cadastrarCliente(c1);
 		farmacia.cadastrarCliente(c2);
 		farmacia.cadastrarCliente(c3);
@@ -308,22 +286,8 @@ public class FarmaciaTest {
 	}
 	
 	@Test
-	public void pesquisarClienteFisicoTest(){
-		Cliente c1 = new ClienteFisico("Vanessa","123.345.567-90");
-		farmacia.cadastrarCliente(c1);
-		assertEquals(c1,farmacia.pesquisarCliente("123.345.567-90"));
-	}
-	
-	@Test
-	public void pesquisarClienteJuridicoTest(){
-		Cliente e = new ClienteJuridico("Rita","28.314.612/6789.00");
-		farmacia.cadastrarCliente(e);
-		assertEquals(e,farmacia.pesquisarCliente("28.314.612/6789.00"));
-	}
-	
-	@Test
 	public void pesquisarClienteNaoCadastradoTest(){
-		Cliente c1 = new ClienteFisico("Vanessa","123.345.567-90");
+		Cliente c1 = new Cliente("Vanessa","123.345.567-90");
 		farmacia.cadastrarCliente(c1);
 		Cliente e = farmacia.pesquisarCliente("132.145.067-10");
 		assertNull(e);
